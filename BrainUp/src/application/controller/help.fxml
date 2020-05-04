@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane fx:id="root" fx:controller="application.controller.homeController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <MenuBar layoutY="2.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="Home">
+            <items>
+                  <MenuItem fx:id="home" mnemonicParsing="false" text="Home" onAction="#handleHome"/>
+                  <MenuItem fx:id="classes" mnemonicParsing="false" text="Classes" />
+                  <MenuItem fx:id="signO" mnemonicParsing="false" text="Sign Out" onAction="#handleSignOut"/>
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+               <items>
+                  <MenuItem fx:id="about" mnemonicParsing="false" text="About Us" onAction="#handleAbout"/>
+                  <MenuItem fx:id="help" mnemonicParsing="false" text="Help" onAction="#handleHelp"/>
+               </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <Text layoutX="161.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Help" textAlignment="CENTER" wrappingWidth="278.13671875">
+         <font>
+            <Font name="Verdana" size="45.0" />
+         </font>
+      </Text>
+      <Text layoutX="91.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="I'll forget to fill this in later" textAlignment="CENTER" wrappingWidth="418.001953125" />
+   </children>
+</Pane>

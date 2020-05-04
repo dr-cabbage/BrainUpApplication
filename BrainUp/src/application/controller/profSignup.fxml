@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.Controller2">
+   <children>
+      <TextField fx:id="firstN" layoutX="175.0" layoutY="110.0" prefHeight="30.0" prefWidth="250.0" promptText="First Name">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="lastN" layoutX="175.0" layoutY="160.0" prefHeight="30.0" prefWidth="250.0" promptText="Last Name">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="userN" layoutX="175.0" layoutY="210.0" prefHeight="30.0" prefWidth="250.0" promptText="Username">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="passW" layoutX="175.0" layoutY="260.0" prefHeight="30.0" prefWidth="250.0" promptText="Password">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="retype" layoutX="175.0" layoutY="310.0" prefHeight="30.0" prefWidth="250.0" promptText="Re-Type Password">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+            <TextField fx:id="classN" layoutX="175.0" layoutY="360.0" prefHeight="30.0" prefWidth="250.0" promptText="Class Name">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <Button fx:id="signUp" layoutX="396.0" layoutY="416.0" mnemonicParsing="false" onAction="#handleProfSignUp" text="Sign Up" />
+      <TextField fx:id="quiz" layoutX="44.0" layoutY="429.0" prefHeight="25.0" prefWidth="73.0" promptText="Quiz" />
+      <Text layoutX="44.0" layoutY="407.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Syllabus Weights">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <TextField fx:id="homework" layoutX="44.0" layoutY="469.0" prefHeight="25.0" prefWidth="73.0" promptText="Homework" />
+      <TextField fx:id="test" layoutX="44.0" layoutY="505.0" prefHeight="25.0" prefWidth="73.0" promptText="Tests" />
+      <TextField fx:id="labs" layoutX="139.0" layoutY="429.0" prefHeight="25.0" prefWidth="73.0" promptText="Labs" />
+      <TextField fx:id="finalE" layoutX="139.0" layoutY="469.0" prefHeight="25.0" prefWidth="73.0" promptText="Final Exam" />
+      <TextField fx:id="other" layoutX="139.0" layoutY="505.0" prefHeight="25.0" prefWidth="73.0" promptText="Other" />
+   </children>
+</Pane>

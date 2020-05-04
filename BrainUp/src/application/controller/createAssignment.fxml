@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane fx:id="root" fx:controller="application.controller.newAssignmentController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="388.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TextField fx:id="assignName" layoutX="151.0" layoutY="110.0" prefHeight="25.0" prefWidth="150.0" promptText="Assignment Name" />
+      <Text layoutX="119.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create Assignment" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Text>
+      <TextField fx:id="possible" layoutX="151.0" layoutY="160.0" prefHeight="25.0" prefWidth="150.0" promptText="Possible Points" />
+      <Button fx:id="create" layoutX="243.0" layoutY="304.0" mnemonicParsing="false" text="Create Assignment" onAction="#handleCreateAssign"/>
+      <TextField fx:id="classCode" layoutX="150.0" layoutY="210.0" prefHeight="25.0" prefWidth="150.0" promptText="Class Code" />
+      <ChoiceBox fx:id="choice" layoutX="150.0" layoutY="260.0" prefWidth="150.0" />
+   </children>
+</Pane>

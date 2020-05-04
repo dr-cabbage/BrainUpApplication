@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+
+<Pane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="727.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.profClassController">
+   <children>
+      <ListView fx:id="list1" layoutY="40.0" onMouseClicked="#handleFindStu" prefHeight="360.0" prefWidth="200.0" />
+      <ListView fx:id="list2" layoutX="200.0" layoutY="40.0" onMouseClicked="#handleFindStuAssignments" prefHeight="360.0" prefWidth="200.0" />
+      <ListView fx:id="list3" layoutX="400.0" layoutY="40.0" onMouseClicked="#handleChangeGrade" prefHeight="360.0" prefWidth="200.0" />
+      <ListView fx:id="list4" layoutX="600.0" layoutY="40.0" prefHeight="360.0" prefWidth="129.0" />
+      <MenuBar layoutY="2.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="Home">
+            <items>
+              <MenuItem fx:id="home" mnemonicParsing="false" onAction="#handleHome" text="Home" />
+                  <MenuItem mnemonicParsing="false" text="Profile" />
+                  <MenuItem fx:id="classes" mnemonicParsing="false" onAction="#handleClasses" text="Classes" />
+                  <MenuItem fx:id="signO" mnemonicParsing="false" onAction="#handleSignOut" text="Sign out" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Edit Class" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleCreateClass" text="Create New Class" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleNewAssign" text="Create New Assignment" />
+                  <MenuItem mnemonicParsing="false" text="Grade Assignment" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem fx:id="about" mnemonicParsing="false" onAction="#handleAbout" text="About Us" />
+                  <MenuItem fx:id="help" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <TextField fx:id="searchA" layoutX="400.0" layoutY="2.0" />
+      <Button fx:id="findButt" layoutX="560.0" layoutY="2.0" mnemonicParsing="false" onAction="#handleFindAssign" text="Find Assignment" />
+   </children>
+</Pane>
