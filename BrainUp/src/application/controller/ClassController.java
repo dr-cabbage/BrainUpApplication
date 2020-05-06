@@ -3,6 +3,7 @@ package application.controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import application.model.Login;
@@ -19,6 +20,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -129,6 +131,8 @@ public class ClassController implements Initializable {
 	}
 	
 	@FXML protected void handleSignOut(ActionEvent e) throws IOException {
+		Login log = new Login();
+		log.signOut();
 		Stage stage;
 		Parent r;
 		stage = (Stage) root.getScene().getWindow();
@@ -180,6 +184,39 @@ public class ClassController implements Initializable {
 		Scene scene = new Scene(r);
 		stage.setScene(scene);
 		stage.show();
+	}
+	@FXML protected void handleChangeFakeGrade(MouseEvent e) throws IOException {
+		Login log = new Login();
+		String cl1 = list2.getSelectionModel().getSelectedItem();
+		if(cl1 == null || cl1 == "") {
+			int i = list3.getSelectionModel().getSelectedIndex();
+			cl1 = list2.getItems().get(i);
+		}
+		String cl = list3.getSelectionModel().getSelectedItem();
+		String cl2 = log.getUser();
+		
+		String cl3 = list.getSelectionModel().getSelectedItem();
+		int i = cl1.indexOf(" Type:");
+		cl1 = cl1.substring(0,i);
+		cl3 = cl3.substring(cl3.lastIndexOf(" ") + 1);
+		int k = cl.indexOf('/');
+		String currGrade = cl.substring(0,k);
+		TextInputDialog dialog = new TextInputDialog();
+		dialog.setTitle("Change Grade");
+		dialog.setHeaderText("Change the grade, current grade is : "  + currGrade);
+		dialog.setContentText("Grade:");
+		Optional<String> result = dialog.showAndWait();
+		try {
+			Integer.parseInt(result.get());
+			log.changeFakeGrade(Integer.valueOf(cl3), cl2, cl1, Integer.valueOf(result.get()));
+			display(e);
+		}catch (NumberFormatException exc){
+			a.setAlertType(AlertType.ERROR);
+			a.setContentText("Please enter a number");
+			a.show();
+		}
+		
+
 	}
 	
 }

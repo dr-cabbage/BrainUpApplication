@@ -17,9 +17,12 @@ public class homeController {
 	@FXML private MenuItem about;
 	@FXML private MenuItem help;
 	@FXML private Parent root;
+	
 
 	
 	@FXML protected void handleSignOut(ActionEvent e) throws IOException {
+		Login log = new Login();
+		log.signOut();
 		Stage stage;
 		Parent r;
 		stage = (Stage) root.getScene().getWindow();

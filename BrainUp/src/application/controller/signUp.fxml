@@ -39,5 +39,6 @@
          </font>
       </TextField>
       <Button fx:id="signUp" layoutX="396.0" layoutY="416.0" mnemonicParsing="false" text="Sign Up" onAction="#handleStuSignUp"/>
+      <Button layoutX="29.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleCancel" text="Cancel" />
    </children>
 </Pane>

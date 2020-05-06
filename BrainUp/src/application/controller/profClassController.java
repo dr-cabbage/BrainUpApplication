@@ -17,10 +17,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
@@ -142,11 +144,26 @@ public class profClassController implements Initializable{
 		String cl = list2.getSelectionModel().getSelectedItem();
 		cl = cl.trim();
 		String[] wordList = cl.split("\\s+");
+		Login log = new Login();
+		if (e.getButton() == MouseButton.SECONDARY) {
+			a.setAlertType(AlertType.CONFIRMATION);
+			a.setTitle("Drop Student");
+			a.setHeaderText("You are about to drop student " + cl);
+			a.setContentText("Are you ok with this?");
+			ButtonType yes = new ButtonType("Yes");
+			ButtonType no = new ButtonType("No");
+			a.getButtonTypes().setAll(yes, no);
+			Optional<ButtonType> result = a.showAndWait();
+			if(result.get() == yes) {
+				log.dropStudent(Integer.valueOf(c.substring(c.lastIndexOf(" ") + 1)), wordList[wordList.length - 1]);
+			}
+			handleFindStu(e);
+			return;
+        }
 		list3.getItems().clear();
 		list4.getItems().clear();
 		observe.removeAll(observe);
 		observe1.removeAll(observe1);
-		Login log = new Login();
 		if(cl == null) {
 			observe.add("No class was selected");
 		}

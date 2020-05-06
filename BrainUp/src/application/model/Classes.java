@@ -55,31 +55,60 @@ public class Classes {
 		double finalGrade = 0, exams = 0, quizzes = 0, HW = 0, labs = 0, other = 0;
 		int numExams = 0, numQuizzes = 0, numHW = 0, numLabs = 0, numOther = 0, numFinal = 0;
 		for(int j = 0; j < stu.get(i).assignments.size(); j++) {
-			if(stu.get(i).assignments.get(j).graded) {
-				switch(stu.get(i).assignments.get(j).type) {
-				case "F":
-					finalGrade += Double.valueOf(stu.get(i).assignments.get(j).grade)/Double.valueOf(stu.get(i).assignments.get(j).possible);
-					numFinal++;
-					continue;
-				case "E":
-					exams += Double.valueOf(stu.get(i).assignments.get(j).grade)/Double.valueOf(stu.get(i).assignments.get(j).possible);
-					numExams++;
-					continue;
-				case "Q":
-					quizzes += Double.valueOf(stu.get(i).assignments.get(j).grade)/Double.valueOf(stu.get(i).assignments.get(j).possible);
-					numQuizzes++;
-					continue;
-				case "L":
-					labs += Double.valueOf(stu.get(i).assignments.get(j).grade)/Double.valueOf(stu.get(i).assignments.get(j).possible);
-					numLabs++;
-					continue;
-				case "H":
-					HW += Double.valueOf(stu.get(i).assignments.get(j).grade)/Double.valueOf(stu.get(i).assignments.get(j).possible);
-					numHW++;
-					continue;
-				case "O":
-					other += Double.valueOf(stu.get(i).assignments.get(j).grade)/Double.valueOf(stu.get(i).assignments.get(j).possible);
-					numOther++;
+			if(stu.get(i).assignments.get(j).graded || stu.get(i).assignments.get(j).fakeGrade != 0) {
+				if(stu.get(i).assignments.get(j).graded) {
+					switch(stu.get(i).assignments.get(j).type) {
+					case "F":
+						finalGrade += Double.valueOf(stu.get(i).assignments.get(j).grade)/Double.valueOf(stu.get(i).assignments.get(j).possible);
+						numFinal++;
+						continue;
+					case "E":
+						exams += Double.valueOf(stu.get(i).assignments.get(j).grade)/Double.valueOf(stu.get(i).assignments.get(j).possible);
+						numExams++;
+						continue;
+					case "Q":
+						quizzes += Double.valueOf(stu.get(i).assignments.get(j).grade)/Double.valueOf(stu.get(i).assignments.get(j).possible);
+						numQuizzes++;
+						continue;
+					case "L":
+						labs += Double.valueOf(stu.get(i).assignments.get(j).grade)/Double.valueOf(stu.get(i).assignments.get(j).possible);
+						numLabs++;
+						continue;
+					case "H":
+						HW += Double.valueOf(stu.get(i).assignments.get(j).grade)/Double.valueOf(stu.get(i).assignments.get(j).possible);
+						numHW++;
+						continue;
+					case "O":
+						other += Double.valueOf(stu.get(i).assignments.get(j).grade)/Double.valueOf(stu.get(i).assignments.get(j).possible);
+						numOther++;
+					}
+				}
+				else if(stu.get(i).assignments.get(j).fakeGrade != 0) {
+					switch(stu.get(i).assignments.get(j).type) {
+					case "F":
+						finalGrade += Double.valueOf(stu.get(i).assignments.get(j).fakeGrade)/Double.valueOf(stu.get(i).assignments.get(j).possible);
+						numFinal++;
+						continue;
+					case "E":
+						exams += Double.valueOf(stu.get(i).assignments.get(j).fakeGrade)/Double.valueOf(stu.get(i).assignments.get(j).possible);
+						numExams++;
+						continue;
+					case "Q":
+						quizzes += Double.valueOf(stu.get(i).assignments.get(j).fakeGrade)/Double.valueOf(stu.get(i).assignments.get(j).possible);
+						numQuizzes++;
+						continue;
+					case "L":
+						labs += Double.valueOf(stu.get(i).assignments.get(j).fakeGrade)/Double.valueOf(stu.get(i).assignments.get(j).possible);
+						numLabs++;
+						continue;
+					case "H":
+						HW += Double.valueOf(stu.get(i).assignments.get(j).fakeGrade)/Double.valueOf(stu.get(i).assignments.get(j).possible);
+						numHW++;
+						continue;
+					case "O":
+						other += Double.valueOf(stu.get(i).assignments.get(j).fakeGrade)/Double.valueOf(stu.get(i).assignments.get(j).possible);
+						numOther++;
+					}
 				}
 			}
 		}
@@ -138,6 +167,14 @@ public class Classes {
 			}
 		}
 	}
+	public void changeFakeGrade(String assignName, String usr, int i, int gr) {
+		for(int j = 0; j < stu.get(i).assignments.size(); j++) {
+			if(stu.get(i).assignments.get(j).name.equals(assignName)) {
+				stu.get(i).assignments.get(j).fakeGrade = gr;
+				return;
+			}
+		}
+	}
 	public String assignAvgGrade(String assignName) {
 		double avg = 0.0;
 		double numStu = stu.size();
@@ -159,6 +196,7 @@ public class Classes {
 		int i = getStudent(username);
 		stu.remove(i);
 	}
+	
 	public String[] editClassPage() {
 		String[] str = new String[10];
 		str[0] = this.name;
