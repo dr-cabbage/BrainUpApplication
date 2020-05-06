@@ -35,7 +35,6 @@ public class Main extends Application {
 	}
 	
 	public void stop(MediaPlayer media) {
-		System.out.println("Stop");
 		media.stop();
 	}
 	

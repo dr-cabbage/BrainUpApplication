@@ -30,6 +30,14 @@
                         <MenuItem fx:id="help" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
                   </items>
                 </Menu>
+                     <Menu mnemonicParsing="false" text="Graph">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#handleQuizzes" text="Quizzes" />
+                        <MenuItem mnemonicParsing="false" onAction="#handleLabs" text="Labs" />
+                        <MenuItem mnemonicParsing="false" onAction="#handleHomeworks" text="Homeworks" />
+                        <MenuItem mnemonicParsing="false" onAction="#handleAllGraphs" text="All" />
+                     </items>
+                  </Menu>
               </menus>
             </MenuBar>
          </children></AnchorPane>
