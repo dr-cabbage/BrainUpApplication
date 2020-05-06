@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 
+import java.io.IOException;
 import java.util.Random;
 
 import application.model.Login;
@@ -139,5 +140,14 @@ public class Controller2 {
 		
 			
 	}
+	}
+	@FXML protected void handleCancel(ActionEvent e) throws IOException {
+		Stage stage;
+		Parent r;
+		stage = (Stage) signUp.getScene().getWindow();
+		r = FXMLLoader.load(getClass().getResource("Login.fxml"));
+		Scene scene = new Scene(r);
+		stage.setScene(scene);
+		stage.show();
 	}
 }

@@ -13,6 +13,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
 public class MainController {
+	@FXML private Parent toor;
 	@FXML private Button signup;
 	@FXML private Button login;
 	@FXML private TextField username;
@@ -33,6 +34,16 @@ public class MainController {
 		stage.show();
 		
 		
+	}
+	
+	@FXML protected void handleCancel(ActionEvent e) throws Exception {
+		Stage stage;
+		Parent r;
+		stage = (Stage) toor.getScene().getWindow();
+		r = FXMLLoader.load(getClass().getResource("Login.fxml"));
+		Scene scene = new Scene(r);
+		stage.setScene(scene);
+		stage.show();
 	}
 	
 	@FXML protected void handleSignin(ActionEvent event) throws Exception{

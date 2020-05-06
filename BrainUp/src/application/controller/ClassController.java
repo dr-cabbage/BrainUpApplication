@@ -206,8 +206,17 @@ public class ClassController implements Initializable {
 		dialog.setHeaderText("Change the grade, current grade is : "  + currGrade);
 		dialog.setContentText("Grade:");
 		Optional<String> result = dialog.showAndWait();
-		log.changeFakeGrade(Integer.valueOf(cl3), cl2, cl1, Integer.valueOf(result.get()));
-		display(e);
+		try {
+			Integer.parseInt(result.get());
+			log.changeFakeGrade(Integer.valueOf(cl3), cl2, cl1, Integer.valueOf(result.get()));
+			display(e);
+		}catch (NumberFormatException exc){
+			a.setAlertType(AlertType.ERROR);
+			a.setContentText("Please enter a number");
+			a.show();
+		}
+		
+
 	}
 	
 }

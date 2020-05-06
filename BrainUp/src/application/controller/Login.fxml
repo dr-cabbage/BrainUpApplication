@@ -6,14 +6,13 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
-<Pane fx:controller="application.controller.MainController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.MainController">
    <children>
-      <Button fx:id="signup" layoutX="528.0" layoutY="14.0" mnemonicParsing="false" text="Sign Up" onAction="#handleSignUp" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e8e0e0" height="267.0" layoutX="131.0" layoutY="167.0" stroke="BLACK" strokeType="INSIDE" width="338.0" />
-      <PasswordField fx:id="pass" layoutX="185.0" layoutY="301.0" prefHeight="25.0" prefWidth="230.0" promptText="Password" />
       <TextField fx:id="username" layoutX="185.0" layoutY="247.0" prefHeight="25.0" prefWidth="230.0" promptText="Username" />
-      <Button fx:id="login" layoutX="389.0" layoutY="363.0" mnemonicParsing="false" text="Log In" onAction="#handleSignin"/>
+      <PasswordField fx:id="pass" layoutX="185.0" layoutY="301.0" prefHeight="25.0" prefWidth="230.0" promptText="Password" />
+      <Button fx:id="signup" layoutX="528.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleSignUp" text="Sign Up" />
+      <Button fx:id="login" layoutX="389.0" layoutY="363.0" mnemonicParsing="false" onAction="#handleSignin" text="Log In" />
       <Text layoutX="244.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign In" textAlignment="CENTER" wrappingWidth="112.41015625">
          <font>
             <Font name="Comic Sans MS" size="24.0" />

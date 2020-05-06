@@ -5,9 +5,10 @@
 <?import javafx.scene.control.*?>
 
 
-<Pane fx:controller="application.controller.MainController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<Pane fx:id="toor" fx:controller="application.controller.MainController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Button fx:id="Student" layoutX="149.0" layoutY="182.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="117.0" text="Student" onAction="#stuSign"/>
       <Button fx:id="Prof" layoutX="326.0" layoutY="182.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="117.0" text="Professor" onAction="#profSign"/>
+      <Button layoutX="29.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleCancel" text="Cancel" />
    </children>
 </Pane>
