@@ -159,4 +159,18 @@ public class Classes {
 		int i = getStudent(username);
 		stu.remove(i);
 	}
+	public String[] editClassPage() {
+		String[] str = new String[10];
+		str[0] = this.name;
+		str[1] = Integer.toString(this.classCode);
+		str[2] = Integer.toString(stu.size());
+		str[3] = Integer.toString(assignments.size());
+		str[4] = Double.toString(syllabus.quizWeight) + "%";
+		str[5] = Double.toString(syllabus.labWeight) + "%";
+		str[6] = Double.toString(syllabus.examWeight) + "%";
+		str[7] = Double.toString(syllabus.HWWeight) + "%";
+		str[8] = Double.toString(syllabus.finalWeight) + "%";
+		str[9] = Double.toString(syllabus.otherWeight) + "%";
+		return str;
+	}
 }
