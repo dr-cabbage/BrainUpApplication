@@ -295,6 +295,22 @@ public class Login {
 		}
 		return str;
 	}
+	public ArrayList<String> getUserGradeType(int cl, String user, String assignmentType) throws IOException {
+		ArrayList<String> str = new ArrayList<String>();
+		for(int i = 0; i < classes.size(); i++) {
+			if(classes.get(i).classCode == cl) {
+				for(int j = 0; j < classes.get(i).stu.size(); j++) {
+					if(classes.get(i).stu.get(j).username.equals(user)) {
+						for(int k = 0; k < classes.get(i).stu.get(j).assignments.size(); k++) {
+							if ((assignmentType.compareTo(classes.get(i).stu.get(j).assignments.get(k).type)) == 0)
+								str.add(Integer.toString(classes.get(i).stu.get(j).assignments.get(k).grade));
+						}
+					}
+				}
+			}
+		}
+		return str;
+	}
 	//checks if the assignment exists
 	public boolean assignmentExists(int cl, String assignName) {
 		int i = findClass(cl);

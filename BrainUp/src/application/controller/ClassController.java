@@ -17,6 +17,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
@@ -67,6 +70,7 @@ public class ClassController implements Initializable {
 			for(int i = 0; i < str.size(); i++) {
 				observe.add(str.get(i));
 			}
+			log.saveUser(log.getUser(), str.get(0).substring(str.get(0).lastIndexOf(" ") + 1), "Doesnt matter");
 		}
 		list.getItems().addAll(observe);
 	}
@@ -234,4 +238,187 @@ public class ClassController implements Initializable {
 		media.setVolume(0.1);
 		media.play();
 	}
+	
+	//this creates a line chart for the quizzes
+		@SuppressWarnings({ "rawtypes", "unchecked" })
+		@FXML protected void handleQuizzes(ActionEvent e) throws IOException{
+			Stage stage = new Stage();
+			Login log = new Login();
+			String cl = list.getSelectionModel().getSelectedItem();
+			if(cl == null || cl == "") {
+				cl = log.currClass();
+			}
+			int classcode = Integer.valueOf(cl.substring(cl.lastIndexOf(" ") + 1));
+			
+
+			ArrayList<String> quizGrades = new ArrayList<String>();
+			quizGrades = log.getUserGradeType(classcode, log.getUser(), "Q");
+			
+			stage.setTitle("Quiz Grades");
+	        //defining the axes
+	        NumberAxis xAxis = new NumberAxis(0.00, quizGrades.size()+1.00, 1.00);
+	        NumberAxis yAxis = new NumberAxis(0.00, 125.00, 5.00);
+	        //xAxis.setLabel("Assignments");
+	        yAxis.setLabel("Grades");
+	        //creating the chart
+	        LineChart<Number, Number> lineChart = new LineChart<Number, Number>(xAxis,yAxis);
+	                
+	        lineChart.setTitle("Line Chart of Quiz Grades");
+	        //defining a series
+	        XYChart.Series series = new XYChart.Series();
+	        series.setName("Quiz Grades");
+	        //populating the series with data
+	        for (int i=1; i <= quizGrades.size(); i++) {
+	        	series.getData().add(new XYChart.Data(i, Integer.valueOf(quizGrades.get(i-1))));
+	        }
+	        
+	        lineChart.getData().add(series);       
+	        Scene scene  = new Scene(lineChart,700,500);
+	        stage.setScene(scene);
+	        stage.show();        
+		}
+		
+		//this creates a line chart for the labs
+		@SuppressWarnings({ "unchecked", "rawtypes" })
+		@FXML protected void handleLabs(ActionEvent e) throws IOException{
+			Stage stage = new Stage();
+			Login log = new Login();
+			String cl = list.getSelectionModel().getSelectedItem();
+			if(cl == null || cl == "") {
+				cl = log.currClass();
+			}
+			int classcode = Integer.valueOf(cl.substring(cl.lastIndexOf(" ") + 1));
+			
+
+			ArrayList<String> labGrades = new ArrayList<String>();
+			labGrades = log.getUserGradeType(classcode, log.getUser(), "L");
+			
+			stage.setTitle("Lab Grades");
+	        //defining the axes
+	        NumberAxis xAxis = new NumberAxis(0.00, labGrades.size()+1.00, 1.00);
+	        NumberAxis yAxis = new NumberAxis(0.00, 125.00, 5.00);
+	        //xAxis.setLabel("Labs");
+	        yAxis.setLabel("Grades");
+	        //creating the chart
+	        LineChart<Number, Number> lineChart = new LineChart<Number, Number>(xAxis,yAxis);
+	                
+	        lineChart.setTitle("Line Chart of Lab Grades");
+	        //defining a series
+			XYChart.Series series = new XYChart.Series();
+	        series.setName("Lab Grades");
+	        //populating the series with data
+	        for (int i=1; i <= labGrades.size(); i++) {
+	        	series.getData().add(new XYChart.Data(i, Integer.valueOf(labGrades.get(i-1))));
+	        }
+	        
+	        lineChart.getData().add(series);       
+	        Scene scene  = new Scene(lineChart,700,500);
+	        stage.setScene(scene);
+	        stage.show();        
+		}
+		
+		//this creates a line chart for the homeworks
+		@SuppressWarnings({ "rawtypes", "unchecked" })
+		@FXML protected void handleHomeworks(ActionEvent e) throws IOException{
+			Stage stage = new Stage();
+			Login log = new Login();
+			String cl = list.getSelectionModel().getSelectedItem();
+			if(cl == null || cl == "") {
+				cl = log.currClass();
+			}
+			int classcode = Integer.valueOf(cl.substring(cl.lastIndexOf(" ") + 1));
+			ArrayList<String> hwGrades = new ArrayList<String>();
+			hwGrades = log.getUserGradeType(classcode, log.getUser(), "H");
+					
+			stage.setTitle("Homework Grades");
+	        //defining the axes
+			NumberAxis xAxis = new NumberAxis(0.00, hwGrades.size()+1.00, 1.00);
+			NumberAxis yAxis = new NumberAxis(0.00, 125.00, 5.00);
+	        //xAxis.setLabel("Homeworks");
+	        yAxis.setLabel("Grades");
+	        //creating the chart
+	        LineChart<Number, Number> lineChart = new LineChart<Number, Number>(xAxis,yAxis);
+			                
+	        lineChart.setTitle("Line Chart of Homework Grades");
+	        //defining a series
+	        XYChart.Series series = new XYChart.Series();
+	        series.setName("Homework Grades");
+	        //populating the series with data
+	        for (int i=1; i <= hwGrades.size(); i++) {
+	        	series.getData().add(new XYChart.Data(i, Integer.valueOf(hwGrades.get(i-1))));
+		    }
+			        
+	        lineChart.getData().add(series);       
+	        Scene scene  = new Scene(lineChart,700,500);
+	        stage.setScene(scene);
+	        stage.show();        
+	    }		
+		
+		//this creates a line chart for all type of assignment grades
+		@SuppressWarnings({ "rawtypes", "unchecked" })
+		@FXML protected void handleAllGraphs(ActionEvent e) throws IOException{
+			Stage stage = new Stage();
+			String cl = list.getSelectionModel().getSelectedItem();
+			int classcode = Integer.valueOf(cl.substring(cl.lastIndexOf(" ") + 1));
+			
+			Login log = new Login();
+			ArrayList<String> hwGrades = new ArrayList<String>();
+			ArrayList<String> labGrades = new ArrayList<String>();
+			ArrayList<String> quizGrades = new ArrayList<String>();
+
+			hwGrades = log.getUserGradeType(classcode, log.getUser(), "H");
+			labGrades = log.getUserGradeType(classcode, log.getUser(), "L");
+			quizGrades = log.getUserGradeType(classcode, log.getUser(), "Q");
+			
+			int hwNum = hwGrades.size();
+			int labNum = labGrades.size();
+			int quizNum = quizGrades.size();
+			int max = hwNum;
+			if(labNum >= max) {
+				if(labNum >= quizNum) 
+					max = labNum;
+				else
+					max = quizNum;
+			}
+			if(quizNum >= max)
+				max = quizNum;
+			
+			stage.setTitle("All Grades");
+	        //defining the axes
+			NumberAxis xAxis = new NumberAxis(0.00, max+1.00, 1.00);
+			NumberAxis yAxis = new NumberAxis(0.00, 120.00, 5.00);
+	        xAxis.setLabel("Assignments");
+	        yAxis.setLabel("Grades");
+	        //creating the chart
+	        LineChart<Number, Number> lineChart = new LineChart<Number, Number>(xAxis,yAxis);
+			                
+	        lineChart.setTitle("Line Chart of All Assignment Grades");
+	        //defining a series
+	        
+	        XYChart.Series series1 = new XYChart.Series();
+	        series1.setName("Lab Grades");
+	        for (int i=1; i <= labGrades.size(); i++) {
+	        	series1.getData().add(new XYChart.Data(i, Integer.valueOf(labGrades.get(i-1))));
+		    }
+	        XYChart.Series series2 = new XYChart.Series();
+	        series2.setName("Quiz Grades");
+	        for (int i=1; i <= quizGrades.size(); i++) {
+	        	series2.getData().add(new XYChart.Data(i, Integer.valueOf(quizGrades.get(i-1))));
+		    }
+	        XYChart.Series series = new XYChart.Series();
+	        series.setName("Homework Grades");
+	        //populating the series with data
+	        for (int i=1; i <= hwGrades.size(); i++) {
+	        	series.getData().add(new XYChart.Data(i, Integer.valueOf(hwGrades.get(i-1))));
+		    }  
+	        
+	        lineChart.getData().add(series1);  
+	        lineChart.getData().add(series2);
+	        lineChart.getData().add(series);  
+	        Scene scene  = new Scene(lineChart,700,500);
+	        stage.setScene(scene);
+	        stage.show();        
+	    }		
+				
+		
 }
