@@ -358,10 +358,14 @@ public class ClassController implements Initializable {
 		@SuppressWarnings({ "rawtypes", "unchecked" })
 		@FXML protected void handleAllGraphs(ActionEvent e) throws IOException{
 			Stage stage = new Stage();
+			Login log = new Login();
 			String cl = list.getSelectionModel().getSelectedItem();
+			if(cl == null || cl == "") {
+				cl = log.currClass();
+			}
 			int classcode = Integer.valueOf(cl.substring(cl.lastIndexOf(" ") + 1));
 			
-			Login log = new Login();
+
 			ArrayList<String> hwGrades = new ArrayList<String>();
 			ArrayList<String> labGrades = new ArrayList<String>();
 			ArrayList<String> quizGrades = new ArrayList<String>();
