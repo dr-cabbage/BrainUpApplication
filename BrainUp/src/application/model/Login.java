@@ -83,20 +83,20 @@ public class Login {
 					if(Integer.toString(classes.get(i).classCode).equals(str2[0])) {
 						if(classes.get(i).prof.equals(str2[1])) {
 							if(str2[6].equals("yes")) {
-								classes.get(i).assignments.add(new Assignments(str2[2], str2[3], Integer.valueOf(str2[4]), Integer.valueOf(str2[0]), str2[1], Integer.valueOf(str2[5]), true));
+								classes.get(i).assignments.add(new Assignments(str2[2], str2[3], Integer.valueOf(str2[4]), Integer.valueOf(str2[0]), str2[1], Integer.valueOf(str2[5]), true, Integer.valueOf(str2[7])));
 							}
 							else {
-								classes.get(i).assignments.add(new Assignments(str2[2], str2[3], Integer.valueOf(str2[4]), Integer.valueOf(str2[0]), str2[1], Integer.valueOf(str2[5]), false));
+								classes.get(i).assignments.add(new Assignments(str2[2], str2[3], Integer.valueOf(str2[4]), Integer.valueOf(str2[0]), str2[1], Integer.valueOf(str2[5]), false, Integer.valueOf(str2[7])));
 							}
 						}
 						else {
 							for(int j = 0; j < classes.get(i).stu.size(); j++) {
 								if(classes.get(i).stu.get(j).username.equals(str2[1])){
 									if(str2[6].equals("yes")) {
-										addAssignment(str2[2], str2[3], Integer.valueOf(str2[4]), Integer.valueOf(str2[0]), str2[1], Integer.valueOf(str2[5]), true, i, j);
+										addAssignment(str2[2], str2[3], Integer.valueOf(str2[4]), Integer.valueOf(str2[0]), str2[1], Integer.valueOf(str2[5]), true, Integer.valueOf(str2[7]), i, j);
 									}
 									else {
-										addAssignment(str2[2], str2[3], Integer.valueOf(str2[4]), Integer.valueOf(str2[0]), str2[1], Integer.valueOf(str2[5]), false, i, j);
+										addAssignment(str2[2], str2[3], Integer.valueOf(str2[4]), Integer.valueOf(str2[0]), str2[1], Integer.valueOf(str2[5]), false, Integer.valueOf(str2[7]), i, j);
 									}
 								}
 							}
@@ -199,17 +199,17 @@ public class Login {
 	public void addStudent(String name, String username, int i, int cl) throws IOException {
 		classes.get(i).stu.add(new Students(name, username, cl));
 		for(int j = 0; j < classes.get(i).assignments.size();j++){
-			classes.get(i).stu.get(findStu(i, username)).assignments.add(new Assignments(classes.get(i).assignments.get(j).type, classes.get(i).assignments.get(j).name, classes.get(i).assignments.get(j).possible, cl, username, classes.get(i).assignments.get(j).grade, classes.get(i).assignments.get(j).graded));
+			classes.get(i).stu.get(findStu(i, username)).assignments.add(new Assignments(classes.get(i).assignments.get(j).type, classes.get(i).assignments.get(j).name, classes.get(i).assignments.get(j).possible, cl, username, classes.get(i).assignments.get(j).grade, classes.get(i).assignments.get(j).graded, classes.get(i).assignments.get(j).fakeGrade));
 		}
 	}
 	//for new assignments being created by professors... distributes assignment to all students
 	public void newAssignment(String type, String name, int possible, int classcode, String username) throws IOException {
 		int k = findClass(classcode);
 		//think of the classes array of assignments as the professors copy of the assignments
-		classes.get(k).assignments.add(new Assignments(type, name, possible, classcode, username, 0, false));
+		classes.get(k).assignments.add(new Assignments(type, name, possible, classcode, username, 0, false, 0));
 		for(int i = 0; i < classes.get(k).stu.size(); i++) {
 			//the student ArrayList of assignments lets each student have a specific assignment rather than it being all bunched up together
-			classes.get(k).stu.get(i).assignments.add(new Assignments(type, name, possible, classcode, classes.get(k).stu.get(i).username, 0, false));
+			classes.get(k).stu.get(i).assignments.add(new Assignments(type, name, possible, classcode, classes.get(k).stu.get(i).username, 0, false, 0));
 		}
 		update();
 	}
@@ -219,8 +219,8 @@ public class Login {
 		return classes.get(i).getStuGrade(user);
 	}
 	//for adding assignments from csv files
-	public void addAssignment(String type, String name, int possible, int classcode, String username, int grade, boolean graded, int i, int j) throws IOException {
-		classes.get(i).stu.get(j).assignments.add(new Assignments(type, name, possible, classcode, username, grade, graded));
+	public void addAssignment(String type, String name, int possible, int classcode, String username, int grade, boolean graded, int fake, int i, int j) throws IOException {
+		classes.get(i).stu.get(j).assignments.add(new Assignments(type, name, possible, classcode, username, grade, graded, fake));
 	}
 	//checks if user is professor or student, 1 if student, 0 if professor, and -1 if they do not exist
 	public int isStudent(String username) throws IOException {
