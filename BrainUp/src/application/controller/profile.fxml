@@ -1,8 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1">
-	<!-- TODO Add Nodes -->
-</AnchorPane>
 
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label alignment="CENTER" layoutX="178.0" layoutY="14.0" prefHeight="58.0" prefWidth="245.0" text="Profile" textAlignment="CENTER">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+      <TextField fx:id="firstName" layoutX="183.0" layoutY="110.0" prefHeight="27.0" prefWidth="235.0" />
+      <Label alignment="CENTER" layoutX="42.0" layoutY="110.0" prefHeight="27.0" prefWidth="117.0" text="First Name:" textAlignment="CENTER">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="lastName" layoutX="183.0" layoutY="160.0" prefHeight="27.0" prefWidth="235.0" />
+      <TextField fx:id="userName" layoutX="183.0" layoutY="210.0" prefHeight="27.0" prefWidth="235.0" />
+      <Label alignment="CENTER" layoutX="42.0" layoutY="160.0" prefHeight="27.0" prefWidth="117.0" text="Last Name:" textAlignment="CENTER">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="42.0" layoutY="210.0" prefHeight="27.0" prefWidth="117.0" text="Username:" textAlignment="CENTER">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="password" layoutX="183.0" layoutY="261.0" prefHeight="27.0" prefWidth="235.0" />
+      <Label alignment="CENTER" layoutX="42.0" layoutY="261.0" prefHeight="27.0" prefWidth="117.0" text="Password:" textAlignment="CENTER">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="back" alignment="CENTER" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleBack" text="&lt; Back" />
+      <Button fx:id="editFirst" layoutX="457.0" layoutY="110.0" mnemonicParsing="false" onAction="#handleEditFirst" prefHeight="27.0" prefWidth="96.0" text="Edit" />
+      <Button fx:id="editLast" layoutX="457.0" layoutY="159.0" mnemonicParsing="false" onAction="#handleEditLast" prefHeight="27.0" prefWidth="96.0" text="Edit" />
+      <Button fx:id="editUser" layoutX="457.0" layoutY="210.0" mnemonicParsing="false" onAction="#handleEditUser" prefHeight="27.0" prefWidth="96.0" text="Edit" />
+      <Button fx:id="editPass" layoutX="457.0" layoutY="261.0" mnemonicParsing="false" onAction="#handleEditPass" prefHeight="27.0" prefWidth="96.0" text="Edit" />
+   </children>
+</Pane>
