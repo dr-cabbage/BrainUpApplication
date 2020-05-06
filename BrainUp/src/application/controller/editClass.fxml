@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<Pane fx:id="root" fx:controller="application.controller.EditClassController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="100.0" layoutY="70.0" text="Class Name: " />
+      <Label layoutX="100.0" layoutY="110.0" text="Class Code: " />
+      <Label layoutX="100.0" layoutY="150.0" text="Number of Students: " />
+      <Label layoutX="100.0" layoutY="190.0" text="Number of Assignments: " />
+      <Label layoutX="100.0" layoutY="230.0" text="Quiz Weight: " />
+      <Label layoutX="100.0" layoutY="270.0" text="Lab Weight: " />
+      <Label layoutX="100.0" layoutY="310.0" text="Exam Weight: " />
+      <Label layoutX="100.0" layoutY="350.0" text="Homework Weight: " />
+      <Label layoutX="100.0" layoutY="390.0" text="Final Exam Weight: " />
+      <Label layoutX="100.0" layoutY="430.0" text="Other Weight: " />
+      <Label layoutX="300.0" layoutY="70.0" text="Label" fx:id="name"/>
+      <Label layoutX="300.0" layoutY="110.0" text="classcode" fx:id="classcode"/>
+      <Label layoutX="300.0" layoutY="150.0" text="numStu" fx:id="numStu"/>
+      <Label layoutX="300.0" layoutY="190.0" text="numAssign" fx:id="numAssign"/>
+      <Label layoutX="300.0" layoutY="230.0" text="quiz" fx:id="quiz"/>
+      <Label layoutX="300.0" layoutY="270.0" text="lab" fx:id="lab"/>
+      <Label layoutX="300.0" layoutY="310.0" text="exam" fx:id="exam"/>
+      <Label layoutX="300.0" layoutY="350.0" text="hw" fx:id="hw"/>
+      <Label layoutX="300.0" layoutY="390.0" text="final" fx:id="finalE"/>
+      <Label layoutX="300.0" layoutY="430.0" text="other" fx:id="other"/>
+      <Button layoutX="385.0" layoutY="66.0" mnemonicParsing="false" text="Change" onAction="#changeClassName"/>
+      <Button layoutX="385.0" layoutY="226.0" mnemonicParsing="false" text="Change" onAction="#changeQuizWeight"/>
+      <Button layoutX="385.0" layoutY="266.0" mnemonicParsing="false" text="Change" onAction="#changeLabWeight"/>
+      <Button layoutX="385.0" layoutY="306.0" mnemonicParsing="false" text="Change" onAction="#changeExamWeight" />
+      <Button layoutX="385.0" layoutY="346.0" mnemonicParsing="false" text="Change" onAction="#changeHWWeight"/>
+      <Button layoutX="385.0" layoutY="386.0" mnemonicParsing="false" text="Change" onAction="#changeFinalWeight"/>
+      <Button layoutX="385.0" layoutY="426.0" mnemonicParsing="false" text="Change" onAction="#changeOtherWeight"/>
+      <Button layoutX="43.0" layoutY="14.0" mnemonicParsing="false" text="Cancel" onAction="#cancel"/>
+   </children>
+</Pane>

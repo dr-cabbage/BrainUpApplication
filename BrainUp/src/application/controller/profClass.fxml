@@ -22,7 +22,7 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Edit">
             <items>
-              <MenuItem mnemonicParsing="false" text="Edit Class" />
+              <MenuItem mnemonicParsing="false" text="Edit Class" onAction="#handleEditClass"/>
                   <MenuItem mnemonicParsing="false" onAction="#handleCreateClass" text="Create New Class" />
                   <MenuItem mnemonicParsing="false" onAction="#handleNewAssign" text="Create New Assignment" />
                   <MenuItem mnemonicParsing="false" text="Grade Assignment" />

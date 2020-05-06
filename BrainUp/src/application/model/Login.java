@@ -527,4 +527,66 @@ public class Login {
 		classes.get(i).dropStudent(usr);
 		update();
 	}
+	
+	public String[] editClass() throws IOException {
+		String str = currClass();
+		int i = findClass(Integer.valueOf(str));
+		if(i == -1) {
+			String[] str1 = {"",""};
+			return str1;
+		}
+		return classes.get(i).editClassPage();
+	}
+	
+	public String currClass() throws IOException{
+		File f1 = new File("data/currUser.csv");
+		BufferedReader br = null;
+		String line = "";
+		String csvSplit = ",";
+		try {
+			br = new BufferedReader(new FileReader(f1));
+			while ((line = br.readLine()) != null) {
+				String[] str = line.split(csvSplit);
+				return str[1];
+		}
+			}finally {
+			try {
+				if(br != null) {
+					br.close();
+				}
+			}catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return "";
+	}
+	
+	public void changeClassName(int cl, String newName) throws IOException {
+		int i = findClass(cl);
+		classes.get(i).name = newName;
+		update();
+		return;
+	}
+	public void changeWeight(int cl, int newWeight, String type) throws IOException {
+		int i = findClass(cl);
+		if(type.equals("Q")) {
+			classes.get(i).syllabus.quizWeight = newWeight;
+		}
+		else if(type.equals("H")) {
+			classes.get(i).syllabus.HWWeight = newWeight;
+		}
+		else if(type.equals("E")) {
+			classes.get(i).syllabus.examWeight = newWeight;
+		}
+		else if(type.equals("L")) {
+			classes.get(i).syllabus.labWeight = newWeight;
+		}
+		else if(type.equals("F")) {
+			classes.get(i).syllabus.finalWeight = newWeight;
+		}
+		else if(type.equals("O")) {
+			classes.get(i).syllabus.otherWeight = newWeight;
+		}
+		update();
+	}
 }

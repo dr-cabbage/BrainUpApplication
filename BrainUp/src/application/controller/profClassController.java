@@ -63,6 +63,7 @@ public class profClassController implements Initializable{
 			for(int i = 0; i < str.size(); i++) {
 				observe.add(str.get(i));
 			}
+			log.saveUser(log.getUser(), str.get(0).substring(str.get(0).lastIndexOf(" ") + 1), "Doesnt matter");
 		}
 		list1.getItems().addAll(observe);
 	}
@@ -89,6 +90,7 @@ public class profClassController implements Initializable{
 				}
 			}
 		}
+		log.saveUser(log.getUser(), cl.substring(cl.lastIndexOf(" ") +1), "Doesnt matter");
 		list2.getItems().addAll(observe);
 	}
 	@FXML protected void handleFindAssign(ActionEvent e) throws IOException {
@@ -292,6 +294,17 @@ public class profClassController implements Initializable{
 		
 		stage = (Stage) root.getScene().getWindow();
 		r = FXMLLoader.load(getClass().getResource("createClass.fxml"));
+		Scene scene = new Scene(r);
+		stage.setScene(scene);
+		stage.show();
+	}
+	
+	@FXML protected void handleEditClass(ActionEvent e) throws IOException{
+		Stage stage;
+		Parent r;
+		
+		stage = (Stage) root.getScene().getWindow();
+		r = FXMLLoader.load(getClass().getResource("editClass.fxml"));
 		Scene scene = new Scene(r);
 		stage.setScene(scene);
 		stage.show();
