@@ -514,6 +514,12 @@ public class Login {
 		classes.get(i).changeGrade(assignName, usr, j, grade);
 		update();
 	}
+	public void changeFakeGrade(int cl, String usr, String assignName, int grade) throws IOException {
+		int i = findClass(cl);
+		int j = findStu(i, usr);
+		classes.get(i).changeFakeGrade(assignName, usr, j, grade);
+		update();
+	}
 	//returns the average for a single assignment in the whole class
 	public String assignAvgGrade(int cl, String assignName) {
 		return classes.get(findClass(cl)).assignAvgGrade(assignName);
@@ -590,4 +596,15 @@ public class Login {
 		}
 		update();
 	}
+	public void signOut() throws IOException {
+		for(int i = 0; i < classes.size(); i++) {
+			for(int j = 0; j < classes.get(i).stu.size(); j++) {
+				for(int k = 0; k < classes.get(i).stu.get(j).assignments.size();k++) {
+					classes.get(i).stu.get(j).assignments.get(k).fakeGrade = classes.get(i).stu.get(j).assignments.get(k).grade;
+				}
+			}
+		}
+		update();
+	}
+	
 }

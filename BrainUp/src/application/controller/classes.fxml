@@ -39,7 +39,7 @@
             <TextField fx:id="addField" layoutX="130.0" layoutY="11.0" />
             <VBox layoutX="221.0" layoutY="40.0" prefHeight="362.0" prefWidth="142.0">
                <children>
-                  <ListView fx:id="list3" prefHeight="360.0" prefWidth="134.0" />
+                  <ListView fx:id="list3" onMouseClicked="#handleChangeFakeGrade" prefHeight="360.0" prefWidth="134.0" />
                </children>
             </VBox>
          </children></AnchorPane>

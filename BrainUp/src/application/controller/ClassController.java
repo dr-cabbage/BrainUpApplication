@@ -3,6 +3,7 @@ package application.controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import application.model.Login;
@@ -16,10 +17,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -129,6 +133,8 @@ public class ClassController implements Initializable {
 	}
 	
 	@FXML protected void handleSignOut(ActionEvent e) throws IOException {
+		Login log = new Login();
+		log.signOut();
 		Stage stage;
 		Parent r;
 		stage = (Stage) root.getScene().getWindow();
@@ -172,6 +178,34 @@ public class ClassController implements Initializable {
 		stage.show();
 	}
 	@FXML protected void handleClasses(ActionEvent e) throws IOException{
+		Stage stage;
+		Parent r;
+		
+		stage = (Stage) root.getScene().getWindow();
+		r = FXMLLoader.load(getClass().getResource("classes.fxml"));
+		Scene scene = new Scene(r);
+		stage.setScene(scene);
+		stage.show();
+	}
+	@FXML protected void handleChangeFakeGrade(MouseEvent e) throws IOException {
+		Login log = new Login();
+		int m = list2.getSelectionModel().getSelectedIndex();
+		String cl = list3.getItems().get(m);
+		String cl1 = list2.getSelectionModel().getSelectedItem();
+		String cl2 = log.getUser();
+		
+		String cl3 = list.getSelectionModel().getSelectedItem();
+		int i = cl1.indexOf(" Type:");
+		cl1 = cl1.substring(0,i);
+		cl3 = cl3.substring(cl3.lastIndexOf(" ") + 1);
+		int k = cl.indexOf('/');
+		String currGrade = cl.substring(0,k);
+		TextInputDialog dialog = new TextInputDialog();
+		dialog.setTitle("Change Grade");
+		dialog.setHeaderText("Change the grade, current grade is : "  + currGrade);
+		dialog.setContentText("Grade:");
+		Optional<String> result = dialog.showAndWait();
+		log.changeGrade(Integer.valueOf(cl3), cl2, cl1, Integer.valueOf(result.get()));
 		Stage stage;
 		Parent r;
 		
