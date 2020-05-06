@@ -31,6 +31,7 @@ public class Main extends Application {
 		Media h = new Media(Paths.get(s).toUri().toString());
 		mediaPlayer = new MediaPlayer(h);
 		mediaPlayer.seek(Duration.ZERO);
+		mediaPlayer.setVolume(0.1);
 		mediaPlayer.play();
 	}
 
