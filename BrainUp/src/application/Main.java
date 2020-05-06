@@ -2,6 +2,7 @@ package application;
 	
 import java.nio.file.Paths;
 
+import application.controller.ClassController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
@@ -24,17 +25,20 @@ public class Main extends Application {
 		stage.show();
 		
 	}
-	
-	MediaPlayer mediaPlayer;
+	public final Media h = new Media(Paths.get("data/Wii.mp3").toUri().toString());
+	public final MediaPlayer mediaPlayer = new MediaPlayer(h);
 	public void music() {
-		String s = "data/Wii.mp3";
-		Media h = new Media(Paths.get(s).toUri().toString());
-		mediaPlayer = new MediaPlayer(h);
 		mediaPlayer.seek(Duration.ZERO);
 		mediaPlayer.setVolume(0.1);
 		mediaPlayer.play();
+		ClassController.media = mediaPlayer;
 	}
-
+	
+	public void stop(MediaPlayer media) {
+		System.out.println("Stop");
+		media.stop();
+	}
+	
 	public static void main(String[] args) {
 		
 		launch(args);

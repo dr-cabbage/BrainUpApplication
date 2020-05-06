@@ -25,6 +25,7 @@
                 </Menu>
                 <Menu mnemonicParsing="false" text="Help">
                   <items>
+                        <MenuItem mnemonicParsing="false" onAction="#handleRegret" text="Extra Credit" />
                         <MenuItem fx:id="about" mnemonicParsing="false" onAction="#handleAbout" text="About Us" />
                         <MenuItem fx:id="help" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
                   </items>
@@ -34,12 +35,12 @@
          </children></AnchorPane>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
          <children>
-            <ListView fx:id="list2" layoutY="38.0" prefHeight="362.0" prefWidth="362.0"  />
+            <ListView fx:id="list2" layoutY="38.0" prefHeight="362.0" prefWidth="362.0" />
             <Button fx:id="addButton" layoutX="287.0" layoutY="11.0" mnemonicParsing="false" onAction="#handleAdd" text="Add Class" />
             <TextField fx:id="addField" layoutX="130.0" layoutY="11.0" />
-            <VBox layoutX="221.0" layoutY="40.0" prefHeight="362.0" prefWidth="142.0">
+            <VBox layoutX="221.0" layoutY="38.0" prefHeight="362.0" prefWidth="142.0">
                <children>
-                  <ListView fx:id="list3" onMouseClicked="#handleChangeFakeGrade" prefHeight="360.0" prefWidth="134.0" />
+                  <ListView fx:id="list3" onMouseClicked="#handleChangeFakeGrade" prefHeight="362.0" prefWidth="134.0" />
                </children>
             </VBox>
          </children></AnchorPane>

@@ -2,10 +2,12 @@ package application.controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import application.Main;
 import application.model.Login;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -23,7 +25,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 public class ClassController implements Initializable {
 	ObservableList<String> observe = FXCollections.observableArrayList();
@@ -218,5 +223,15 @@ public class ClassController implements Initializable {
 		
 
 	}
-	
+	public static MediaPlayer media;
+	@FXML protected void handleRegret(ActionEvent e) {
+		Main m = new Main();
+		m.stop(media);
+		String s = "data/Regret.mp3";
+		Media h = new Media(Paths.get(s).toUri().toString());
+		media = new MediaPlayer(h);
+		media.seek(Duration.ZERO);
+		media.setVolume(0.1);
+		media.play();
+	}
 }
