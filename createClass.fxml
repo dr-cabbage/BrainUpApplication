@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="420.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.createClassController">
+   <children>
+      <Label layoutX="150.0" layoutY="48.0" prefHeight="51.0" prefWidth="201.0" text="Create Class" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="35.0" />
+         </font>
+      </Label>
+      <TextField fx:id="classN" layoutX="176.0" layoutY="130.0" promptText="Class Name" />
+      <Label layoutX="204.0" layoutY="190.0" prefHeight="25.0" prefWidth="89.0" text="Syllabus" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+      <TextField fx:id="quiz" layoutX="70.0" layoutY="251.0" prefHeight="25.0" prefWidth="100.0" promptText="Quiz Weight" />
+      <TextField fx:id="hw" layoutX="200.0" layoutY="251.0" prefHeight="25.0" prefWidth="100.0" promptText="HW Weight" />
+      <TextField fx:id="exam" layoutX="330.0" layoutY="251.0" prefHeight="25.0" prefWidth="100.0" promptText="Exam Weight" />
+      <TextField fx:id="lab" layoutX="70.0" layoutY="300.0" prefHeight="25.0" prefWidth="100.0" promptText="Lab Weight" />
+      <TextField fx:id="finalW" layoutX="200.0" layoutY="300.0" prefHeight="25.0" prefWidth="100.0" promptText="Final Weight" />
+      <TextField fx:id="other" layoutX="330.0" layoutY="300.0" prefHeight="25.0" prefWidth="100.0" promptText="Other" />
+      <Button fx:id="create" layoutX="390.0" layoutY="347.0" mnemonicParsing="false" onAction="#handleCreateClass" text="Create Class" />
+      <Button fx:id="cancel" layoutX="44.0" layoutY="347.0" mnemonicParsing="false" onAction="#handleCancel" text="Cancel" />
+      <Button fx:id="graph" layoutX="176.0" layoutY="353.0" mnemonicParsing="false" onAction="#handleGraph" text="Distribution Graph" />
+   </children>
+</Pane>
