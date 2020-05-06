@@ -29,7 +29,6 @@ public class Assignments {
 		else {
 			str += "no,";
 		}
-		
 		str += Integer.toString(fakeGrade) + "\n";
 		return str;
 	}

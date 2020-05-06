@@ -159,6 +159,7 @@ public class Classes {
 		int i = getStudent(username);
 		stu.remove(i);
 	}
+	
 	public String[] editClassPage() {
 		String[] str = new String[10];
 		str[0] = this.name;
