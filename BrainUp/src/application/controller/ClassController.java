@@ -187,9 +187,12 @@ public class ClassController implements Initializable {
 	}
 	@FXML protected void handleChangeFakeGrade(MouseEvent e) throws IOException {
 		Login log = new Login();
-		int m = list2.getSelectionModel().getSelectedIndex();
-		String cl = list3.getItems().get(m);
 		String cl1 = list2.getSelectionModel().getSelectedItem();
+		if(cl1 == null || cl1 == "") {
+			int i = list3.getSelectionModel().getSelectedIndex();
+			cl1 = list2.getItems().get(i);
+		}
+		String cl = list3.getSelectionModel().getSelectedItem();
 		String cl2 = log.getUser();
 		
 		String cl3 = list.getSelectionModel().getSelectedItem();
@@ -204,14 +207,7 @@ public class ClassController implements Initializable {
 		dialog.setContentText("Grade:");
 		Optional<String> result = dialog.showAndWait();
 		log.changeFakeGrade(Integer.valueOf(cl3), cl2, cl1, Integer.valueOf(result.get()));
-		Stage stage;
-		Parent r;
-		
-		stage = (Stage) root.getScene().getWindow();
-		r = FXMLLoader.load(getClass().getResource("classes.fxml"));
-		Scene scene = new Scene(r);
-		stage.setScene(scene);
-		stage.show();
+		display(e);
 	}
 	
 }

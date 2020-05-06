@@ -286,7 +286,12 @@ public class Login {
 		int i = findClass(cl);
 		int j = findStu(i, user);
 		for(int k = 0; k < classes.get(i).stu.get(j).assignments.size(); k++) {
-			str.add(Integer.toString(classes.get(i).stu.get(j).assignments.get(k).grade) + "/" + Integer.toString(classes.get(i).stu.get(j).assignments.get(k).possible));
+			if(classes.get(i).stu.get(j).assignments.get(k).fakeGrade != 0) {
+				str.add(Integer.toString(classes.get(i).stu.get(j).assignments.get(k).fakeGrade) + "/" + Integer.toString(classes.get(i).stu.get(j).assignments.get(k).possible));
+			}
+			else {
+				str.add(Integer.toString(classes.get(i).stu.get(j).assignments.get(k).grade) + "/" + Integer.toString(classes.get(i).stu.get(j).assignments.get(k).possible));
+			}
 		}
 		return str;
 	}
