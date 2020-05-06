@@ -39,6 +39,7 @@ public class MainController {
 		Login log = new Login();
 		Stage stage;
 		Parent root;
+		log.signOut();
 		if(log.userPassCheck(username.getText(), pass.getText())) {
 			log.saveUser(username.getText(), "00000", log.getName(username.getText()));
 			stage = (Stage) login.getScene().getWindow();
