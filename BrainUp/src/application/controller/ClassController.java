@@ -369,24 +369,30 @@ public class ClassController implements Initializable {
 			ArrayList<String> hwGrades = new ArrayList<String>();
 			ArrayList<String> labGrades = new ArrayList<String>();
 			ArrayList<String> quizGrades = new ArrayList<String>();
-
+			ArrayList<String> examGrades = new ArrayList<String>();
+			ArrayList<String> finalExamGrades = new ArrayList<String>();
+			ArrayList<String> otherGrades = new ArrayList<String>();
+			
 			hwGrades = log.getUserGradeType(classcode, log.getUser(), "H");
 			labGrades = log.getUserGradeType(classcode, log.getUser(), "L");
 			quizGrades = log.getUserGradeType(classcode, log.getUser(), "Q");
+			examGrades = log.getUserGradeType(classcode, log.getUser(), "E");
+			finalExamGrades = log.getUserGradeType(classcode, log.getUser(), "F");
+			otherGrades = log.getUserGradeType(classcode, log.getUser(), "O");
 			
 			int hwNum = hwGrades.size();
 			int labNum = labGrades.size();
 			int quizNum = quizGrades.size();
-			int max = hwNum;
-			if(labNum >= max) {
-				if(labNum >= quizNum) 
-					max = labNum;
-				else
-					max = quizNum;
+			int examNum = examGrades.size();
+			int finalNum = finalExamGrades.size();
+			int otherNum = otherGrades.size();
+			int[] arr = {hwNum, labNum, quizNum, examNum, finalNum, otherNum};
+			int max = 0;
+			for(int i = 0; i < arr.length; i++) {
+				if(arr[i] > max) {
+					max = arr[i];
+				}
 			}
-			if(quizNum >= max)
-				max = quizNum;
-			
 			stage.setTitle("All Grades");
 	        //defining the axes
 			NumberAxis xAxis = new NumberAxis(0.00, max+1.00, 1.00);
@@ -415,7 +421,27 @@ public class ClassController implements Initializable {
 	        for (int i=1; i <= hwGrades.size(); i++) {
 	        	series.getData().add(new XYChart.Data(i, Integer.valueOf(hwGrades.get(i-1))));
 		    }  
-	        
+	        XYChart.Series series3 = new XYChart.Series();
+	        series3.setName("Exam Grades");
+	        //populating the series with data
+	        for (int i=1; i <= examGrades.size(); i++) {
+	        	series3.getData().add(new XYChart.Data(i, Integer.valueOf(examGrades.get(i-1))));
+		    }  
+	        XYChart.Series series4 = new XYChart.Series();
+	        series4.setName("Other Grades");
+	        //populating the series with data
+	        for (int i=1; i <= otherGrades.size(); i++) {
+	        	series4.getData().add(new XYChart.Data(i, Integer.valueOf(otherGrades.get(i-1))));
+		    }  
+	        XYChart.Series series5 = new XYChart.Series();
+	        series5.setName("Finals Grade");
+	        //populating the series with data
+	        for (int i=1; i <= finalExamGrades.size(); i++) {
+	        	series5.getData().add(new XYChart.Data(i, Integer.valueOf(finalExamGrades.get(i-1))));
+		    }  
+	        lineChart.getData().add(series5);
+	        lineChart.getData().add(series4);
+	        lineChart.getData().add(series3);
 	        lineChart.getData().add(series1);  
 	        lineChart.getData().add(series2);
 	        lineChart.getData().add(series);  
