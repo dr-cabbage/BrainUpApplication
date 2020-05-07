@@ -1,5 +1,6 @@
 package application.controller;
 
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import java.io.IOException;
 import java.net.URL;
@@ -14,6 +15,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextInputDialog;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
 public class ProfileController implements Initializable{
@@ -28,6 +30,7 @@ public class ProfileController implements Initializable{
 	@FXML private Button editLast;
 	@FXML private Button editUser;
 	@FXML private Button editPass;
+	Alert a = new Alert(AlertType.NONE);
 	
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
@@ -110,6 +113,12 @@ public class ProfileController implements Initializable{
 		dialog.setContentText("New Username: ");
 		Optional<String> result = dialog.showAndWait();
 		Login log = new Login();
+		if(log.alreadyExists(result.get())) {
+			a.setAlertType(AlertType.ERROR);
+			a.setContentText("That username already exists");
+			a.show();
+			return;
+		}
 		String name = firstName.getText() + " " + lastName.getText();
 		log.editInfo(userName.getText(), name, result.get(), password.getText());
 		Stage stage;
