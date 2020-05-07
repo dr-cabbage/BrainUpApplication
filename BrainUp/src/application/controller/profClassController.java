@@ -326,4 +326,15 @@ public class profClassController implements Initializable{
 		stage.setScene(scene);
 		stage.show();
 	}
+	
+	@FXML protected void handleProfile(ActionEvent e) throws IOException {
+		Stage stage;
+		Parent r;
+		
+		stage = (Stage) root.getScene().getWindow();
+		r = FXMLLoader.load(getClass().getResource("profile.fxml"));
+		Scene scene = new Scene(r);
+		stage.setScene(scene);
+		stage.show();
+	}
 }
