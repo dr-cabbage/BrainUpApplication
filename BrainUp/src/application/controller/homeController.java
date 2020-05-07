@@ -13,6 +13,7 @@ import application.model.Login;
 public class homeController {
 	@FXML private MenuItem home;
 	@FXML private MenuItem classes;
+	@FXML private MenuItem profile;
 	@FXML private MenuItem signO;
 	@FXML private MenuItem about;
 	@FXML private MenuItem help;
