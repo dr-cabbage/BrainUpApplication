@@ -628,4 +628,37 @@ public class Login {
 		update();
 	}
 	
+	public void editInfo() {
+		
+	}
+	
+	public String[] getInfo() throws IOException {
+		String userN = getUser();
+		String[] str = null;
+		File f1 = new File("data/usrpass.csv");
+		BufferedReader br = null;
+		String line = "";
+		String csvSplit = ",";
+		try {
+			br = new BufferedReader(new FileReader(f1));
+			while ((line = br.readLine()) != null) {
+				str = line.split(csvSplit);
+				if(str[1] == userN) {
+					return str;
+				}
+			}
+		} finally {
+			try {
+				if(br != null) {
+					br.close();
+				}
+			}catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return str;
+	}
+			
 }
+	
+
