@@ -657,7 +657,7 @@ public class Login {
 					}
 					size1 = classes.get(a).assignments.size();
 					for(int c=0;c<size1;c++) {
-						if(classes.get(a).assignments.get(c).student == ogUser) {
+						if(classes.get(a).assignments.get(c).student.equals(ogUser)) {
 							classes.get(a).assignments.get(c).student = userN;
 						}
 					}
@@ -667,7 +667,7 @@ public class Login {
 			}	
 		}else if(isStudent(ogUser) == 0) {
 			for(int d=0;d<classes.size();d++) {
-				if(classes.get(d).prof == ogUser) {
+				if(classes.get(d).prof.equals(ogUser)) {
 					classes.get(d).prof = userN;
 				}
 			}
@@ -678,7 +678,7 @@ public class Login {
 			br = new BufferedReader(new FileReader(f1));
 			while((line = br.readLine()) != null) {
 				str = line.split(csvSplit);
-				if(str[1] != ogUser) {
+				if(!(str[1].equals(ogUser))) {
 					users.add(line + "\n");
 				}else {
 					type = str[3];
@@ -740,7 +740,7 @@ public class Login {
 			br = new BufferedReader(new FileReader(f1));
 			while ((line = br.readLine()) != null) {
 				str = line.split(csvSplit);
-				if(str[1] == userN) {
+				if(str[1].equals(userN)) {
 					return str;
 				}
 			}
