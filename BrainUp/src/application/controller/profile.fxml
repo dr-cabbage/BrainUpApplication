@@ -33,11 +33,11 @@
             <Font name="Arial" size="14.0" />
          </font>
       </Label>
-      <Button alignment="CENTER" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleBack" text="&lt; Back" />
-      <Button layoutX="457.0" layoutY="110.0" mnemonicParsing="false" onAction="#handleEditFirst" prefHeight="27.0" prefWidth="96.0" text="Edit" />
-      <Button layoutX="457.0" layoutY="159.0" mnemonicParsing="false" onAction="#handleEditLast" prefHeight="27.0" prefWidth="96.0" text="Edit" />
-      <Button layoutX="457.0" layoutY="210.0" mnemonicParsing="false" onAction="#handleEditUser" prefHeight="27.0" prefWidth="96.0" text="Edit" />
-      <Button layoutX="457.0" layoutY="261.0" mnemonicParsing="false" onAction="#handleEditPass" prefHeight="27.0" prefWidth="96.0" text="Edit" />
+      <Button fx:id="back" alignment="CENTER" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleBack" text="&lt; Back" />
+      <Button fx:id="editFirst" layoutX="457.0" layoutY="110.0" mnemonicParsing="false" onAction="#handleEditFirst" prefHeight="27.0" prefWidth="96.0" text="Edit" />
+      <Button fx:id="editLast" layoutX="457.0" layoutY="159.0" mnemonicParsing="false" onAction="#handleEditLast" prefHeight="27.0" prefWidth="96.0" text="Edit" />
+      <Button fx:id="editUser" layoutX="457.0" layoutY="210.0" mnemonicParsing="false" onAction="#handleEditUser" prefHeight="27.0" prefWidth="96.0" text="Edit" />
+      <Button fx:id="editPass" layoutX="457.0" layoutY="261.0" mnemonicParsing="false" onAction="#handleEditPass" prefHeight="27.0" prefWidth="96.0" text="Edit" />
       <Label fx:id="firstName" alignment="CENTER" contentDisplay="CENTER" layoutX="183.0" layoutY="110.0" prefHeight="27.0" prefWidth="235.0" text="firstName" textAlignment="CENTER">
          <font>
             <Font size="14.0" />

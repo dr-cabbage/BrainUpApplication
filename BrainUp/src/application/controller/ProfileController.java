@@ -1,10 +1,10 @@
 package application.controller;
 
+import javafx.scene.control.Button;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
-
 import application.model.Login;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,6 +23,11 @@ public class ProfileController implements Initializable{
 	@FXML private Label lastName;
 	@FXML private Label userName;
 	@FXML private Label password;
+	@FXML private Button back;
+	@FXML private Button editFirst;
+	@FXML private Button editLast;
+	@FXML private Button editUser;
+	@FXML private Button editPass;
 	
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
