@@ -57,13 +57,7 @@ public class ProfileController implements Initializable{
 		Stage stage;
 		Parent r;
 		stage = (Stage) root.getScene().getWindow();
-		Login log = new Login();
-		if(log.isStudent(log.getUser()) == 1) {
-			r = FXMLLoader.load(getClass().getResource("classes.fxml"));
-		}
-		else {
-			r = FXMLLoader.load(getClass().getResource("profClass.fxml"));
-		}
+		r = FXMLLoader.load(getClass().getResource("home.fxml"));
 		Scene scene = new Scene(r);
 		stage.setScene(scene);
 		stage.show();

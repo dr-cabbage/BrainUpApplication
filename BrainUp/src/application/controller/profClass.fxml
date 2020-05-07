@@ -15,7 +15,7 @@
           <Menu mnemonicParsing="false" text="Home">
             <items>
               <MenuItem fx:id="home" mnemonicParsing="false" onAction="#handleHome" text="Home" />
-                  <MenuItem mnemonicParsing="false" text="Profile" />
+                  <MenuItem mnemonicParsing="false" text="Profile" onAction="#handleProfile" />
                   <MenuItem fx:id="classes" mnemonicParsing="false" onAction="#handleClasses" text="Classes" />
                   <MenuItem fx:id="signO" mnemonicParsing="false" onAction="#handleSignOut" text="Sign out" />
             </items>

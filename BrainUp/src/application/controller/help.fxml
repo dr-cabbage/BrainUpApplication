@@ -13,7 +13,7 @@
           <Menu mnemonicParsing="false" text="Home">
             <items>
                   <MenuItem fx:id="home" mnemonicParsing="false" text="Home" onAction="#handleHome"/>
-                  <MenuItem fx:id="classes" mnemonicParsing="false" text="Classes" />
+                  <MenuItem fx:id="classes" mnemonicParsing="false" text="Classes" onAction="#handleClasses" />
                   <MenuItem fx:id="signO" mnemonicParsing="false" text="Sign Out" onAction="#handleSignOut"/>
             </items>
           </Menu>
