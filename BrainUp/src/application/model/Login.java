@@ -627,5 +627,8 @@ public class Login {
 		}
 		update();
 	}
-	
+	public ArrayList<String> studentGraph(int cl, String usr){
+		int i = findClass(cl);
+		return classes.get(i).studentGraph(usr);
+	}
 }

@@ -449,6 +449,39 @@ public class ClassController implements Initializable {
 	        stage.setScene(scene);
 	        stage.show();        
 	    }		
-				
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@FXML protected void handleGPA(ActionEvent e) throws IOException {
+		Stage stage = new Stage();
+		Login log = new Login();
+		String cl = list.getSelectionModel().getSelectedItem();
+		if(cl == null || cl == "") {
+			cl = log.currClass();
+		}
+		int classcode = Integer.valueOf(cl.substring(cl.lastIndexOf(" ") + 1));
+		int max = 0;
+		max = log.getUserAssignments(classcode, log.getUser()).size();
+		stage.setTitle("All Grades");
+        //defining the axes
+		NumberAxis xAxis = new NumberAxis(0.00, max+1.00, 1.00);
+		NumberAxis yAxis = new NumberAxis(0.00, 120.00, 5.00);
+		xAxis.setLabel("Assignments");
+        yAxis.setLabel("Grade");
+        //creating the chart
+        LineChart<Number, Number> lineChart = new LineChart<Number, Number>(xAxis,yAxis);
+		                
+        lineChart.setTitle("Line Chart of Total Grade");
+        XYChart.Series series = new XYChart.Series();
+        ArrayList<String> grades;
+        grades = log.studentGraph(Integer.valueOf(log.currClass()), log.getUser());
+        series.setName(cl);
+        for(int j = 1; j < grades.size() + 1; j++) {
+        	series.getData().add(new XYChart.Data(j, Integer.valueOf(grades.get(j -1))));
+        }
+        lineChart.getData().add(series);
+        Scene scene  = new Scene(lineChart,700,500);
+        stage.setScene(scene);
+        stage.show();
+		
+	}
 		
 }

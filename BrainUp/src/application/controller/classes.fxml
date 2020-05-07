@@ -32,6 +32,7 @@
                 </Menu>
                      <Menu mnemonicParsing="false" text="Graph">
                      <items>
+                        <MenuItem mnemonicParsing="false" onAction="#handleGPA" text="Total Grades" />
                         <MenuItem mnemonicParsing="false" onAction="#handleQuizzes" text="Quizzes" />
                         <MenuItem mnemonicParsing="false" onAction="#handleLabs" text="Labs" />
                         <MenuItem mnemonicParsing="false" onAction="#handleHomeworks" text="Homeworks" />

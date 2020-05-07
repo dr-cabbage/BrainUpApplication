@@ -50,6 +50,102 @@ public class Classes {
 		}
 		return -1;
 	}
+	public ArrayList<String> studentGraph(String username){
+		ArrayList<String> arr = new ArrayList<String>();
+		int i = getStudent(username);
+		double finalGrade = 0, exams = 0, quizzes = 0, HW = 0, labs = 0, other = 0;
+		double finalPoints = 0, examPoints = 0, quizPoints = 0, homeworkPoints = 0, labPoints = 0, otherPoints = 0;
+		int numExams = 0, numQuizzes = 0, numHW = 0, numLabs = 0, numOther = 0, numFinal = 0;
+		for(int j = 0; j < stu.get(i).assignments.size(); j++) {
+			if(stu.get(i).assignments.get(j).graded || stu.get(i).assignments.get(j).fakeGrade != 0) {
+				if(stu.get(i).assignments.get(j).graded) {
+					switch(stu.get(i).assignments.get(j).type) {
+					case "F":
+						finalGrade += Double.valueOf(stu.get(i).assignments.get(j).grade)/Double.valueOf(stu.get(i).assignments.get(j).possible);
+						numFinal++;
+					case "E":
+						exams += Double.valueOf(stu.get(i).assignments.get(j).grade)/Double.valueOf(stu.get(i).assignments.get(j).possible);
+						numExams++;
+					case "Q":
+						quizzes += Double.valueOf(stu.get(i).assignments.get(j).grade)/Double.valueOf(stu.get(i).assignments.get(j).possible);
+						numQuizzes++;
+					case "L":
+						labs += Double.valueOf(stu.get(i).assignments.get(j).grade)/Double.valueOf(stu.get(i).assignments.get(j).possible);
+						numLabs++;
+					case "H":
+						HW += Double.valueOf(stu.get(i).assignments.get(j).grade)/Double.valueOf(stu.get(i).assignments.get(j).possible);
+						numHW++;
+					case "O":
+						other += Double.valueOf(stu.get(i).assignments.get(j).grade)/Double.valueOf(stu.get(i).assignments.get(j).possible);
+						numOther++;
+					}
+				}
+				else if(stu.get(i).assignments.get(j).fakeGrade != 0) {
+					switch(stu.get(i).assignments.get(j).type) {
+					case "F":
+						finalGrade += Double.valueOf(stu.get(i).assignments.get(j).fakeGrade)/Double.valueOf(stu.get(i).assignments.get(j).possible);
+						numFinal++;
+					case "E":
+						exams += Double.valueOf(stu.get(i).assignments.get(j).fakeGrade)/Double.valueOf(stu.get(i).assignments.get(j).possible);
+						numExams++;
+					case "Q":
+						quizzes += Double.valueOf(stu.get(i).assignments.get(j).fakeGrade)/Double.valueOf(stu.get(i).assignments.get(j).possible);
+						numQuizzes++;
+					case "L":
+						labs += Double.valueOf(stu.get(i).assignments.get(j).fakeGrade)/Double.valueOf(stu.get(i).assignments.get(j).possible);
+						numLabs++;
+					case "H":
+						HW += Double.valueOf(stu.get(i).assignments.get(j).fakeGrade)/Double.valueOf(stu.get(i).assignments.get(j).possible);
+						numHW++;
+					case "O":
+						other += Double.valueOf(stu.get(i).assignments.get(j).fakeGrade)/Double.valueOf(stu.get(i).assignments.get(j).possible);
+						numOther++;
+					}
+				}
+			}
+		
+			if(numExams != 0) {
+				examPoints = (exams * syllabus.examWeight) / numExams;
+			}
+			else {
+				examPoints = syllabus.examWeight;
+			}
+			if(numQuizzes != 0) {
+				quizPoints = (quizzes * syllabus.quizWeight) / numQuizzes;
+			}
+			else {
+				quizPoints = syllabus.quizWeight;
+			}
+			if(numHW != 0) {
+				homeworkPoints = (HW * syllabus.HWWeight) / numHW;
+			}
+			else {
+				homeworkPoints = syllabus.HWWeight;
+			}
+			if(numLabs != 0) {
+				labPoints = (labs * syllabus.labWeight) / numLabs;
+			}
+			else {
+				labPoints = syllabus.labWeight;
+			}
+			if(numOther != 0) {
+				otherPoints = (other * syllabus.otherWeight) / numOther; 
+			}
+			else {
+				otherPoints = syllabus.otherWeight;
+			}
+			if(numFinal == 0) {
+				finalPoints = syllabus.finalWeight;
+			}
+			else {
+				finalPoints = finalGrade * (syllabus.finalWeight);
+			}
+			int grade = (int) (examPoints + quizPoints + homeworkPoints + labPoints + otherPoints + finalPoints);
+			arr.add(Integer.toString(grade));
+		}
+		return arr;
+	}
+	
 	public String getStuGrade(String username) {
 		int i = getStudent(username);
 		double finalGrade = 0, exams = 0, quizzes = 0, HW = 0, labs = 0, other = 0;
