@@ -679,7 +679,7 @@ public class Login {
 			while((line = br.readLine()) != null) {
 				str = line.split(csvSplit);
 				if(str[1] != ogUser) {
-					users.add(line);
+					users.add(line + "\n");
 				}else {
 					type = str[3];
 				}
