@@ -44,6 +44,7 @@ public class ClassController implements Initializable {
 	@FXML private MenuItem signO;
 	@FXML private MenuItem about;
 	@FXML private MenuItem help;
+	@FXML private MenuItem profile;
 	@FXML private Button addButton;
 	@FXML private TextField addField;
 	@FXML private Parent root;
@@ -161,6 +162,17 @@ public class ClassController implements Initializable {
 		stage.setScene(scene);
 		stage.show();
 		
+	}
+	
+	@FXML protected void handleProfile(ActionEvent e) throws IOException {
+		Stage stage;
+		Parent r;
+		
+		stage = (Stage) root.getScene().getWindow();
+		r = FXMLLoader.load(getClass().getResource("profile.fxml"));
+		Scene scene = new Scene(r);
+		stage.setScene(scene);
+		stage.show();
 	}
 	
 	@FXML protected void handleAbout(ActionEvent e) throws IOException {
