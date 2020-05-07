@@ -64,7 +64,20 @@ public class ProfileController implements Initializable{
 	
 	
 	@FXML protected void handleEditFirst(ActionEvent e) throws IOException {
-		
+		TextInputDialog dialog = new TextInputDialog();
+		dialog.setTitle("Change Name");
+		//dialog.setHeaderText("Change the class name, current name is : "  + name.getText());
+		dialog.setContentText("New Name: ");
+		Optional<String> result = dialog.showAndWait();
+		Login log = new Login();
+		//log.changeClassName(Integer.valueOf(classcode.getText()), result.get());
+		Stage stage;
+		Parent r;
+		stage = (Stage) root.getScene().getWindow();
+		r = FXMLLoader.load(getClass().getResource("editClass.fxml"));
+		Scene scene = new Scene(r);
+		stage.setScene(scene);
+		stage.show();
 	}
 	
 	

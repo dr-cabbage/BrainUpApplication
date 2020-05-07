@@ -633,8 +633,100 @@ public class Login {
 		return classes.get(i).studentGraph(usr);
 	}
 	
-	public void editInfo() {
+	public void editInfo(String ogUser, String name, String userN, String password) throws IOException {
+		int i, size, size1;
+		File f1 = new File("data/usrpass.csv");
+		File f2 = new File("data/currUser.csv");
+		BufferedReader br = null;
+		ArrayList<String> users = new ArrayList<String>();
+		String[] str = null;
+		String csvSplit = ",";
+		String line = "";
+		String type = "";
+		String newInfo = "";
+		String classCode = "";
 		
+		// changes all instances of the users info
+		if(isStudent(ogUser) == 1) {
+			for(int a=0;a<classes.size();a++) {
+				i = findStu(a, ogUser);
+				if(i != -1) {
+					size = classes.get(a).stu.get(i).assignments.size();
+					for(int b=0;b<size;b++) {
+						classes.get(a).stu.get(i).assignments.get(b).student = userN;
+					}
+					size1 = classes.get(a).assignments.size();
+					for(int c=0;c<size1;c++) {
+						if(classes.get(a).assignments.get(c).student == ogUser) {
+							classes.get(a).assignments.get(c).student = userN;
+						}
+					}
+					classes.get(a).stu.get(i).username = userN;
+					classes.get(a).stu.get(i).name = name;
+				}
+			}	
+		}else if(isStudent(ogUser) == 0) {
+			for(int d=0;d<classes.size();d++) {
+				if(classes.get(d).prof == ogUser) {
+					classes.get(d).prof = userN;
+				}
+			}
+		}
+		
+		// saves all the other users information
+		try {
+			br = new BufferedReader(new FileReader(f1));
+			while((line = br.readLine()) != null) {
+				str = line.split(csvSplit);
+				if(str[1] != ogUser) {
+					users.add(line);
+				}else {
+					type = str[3];
+				}
+			}
+		} finally {
+			try {
+				if(br != null) {
+					br.close();
+				}
+			}catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		newInfo = name + "," + userN + "," + password + "," + type + "\n";
+		users.add(newInfo);
+		
+		// updates the usrpass.csv information
+		FileWriter fw = new FileWriter(f1);
+		for(int e=0;e<users.size();e++) {
+			fw.append(users.get(e));
+		}
+		fw.flush();
+		fw.close();
+		
+		// accesses the users class code
+		try {
+			br = new BufferedReader(new FileReader(f2));
+			while((line = br.readLine()) != null) {
+				str = line.split(csvSplit);
+				classCode = str[1];
+			}
+		} finally {
+			try {
+				if(br != null) {
+					br.close();
+				}
+			}catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		// updates the currUser.csv info
+		saveUser(userN, classCode, name);
+		// updates all the other csv files
+		update();
+	
 	}
 	
 	public String[] getInfo() throws IOException {
