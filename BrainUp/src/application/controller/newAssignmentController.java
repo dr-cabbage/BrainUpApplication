@@ -34,6 +34,21 @@ public class newAssignmentController implements Initializable{
 	public void initialize(URL url, ResourceBundle rb) {
 		choice.getItems().addAll(observe2);
 	}
+	@FXML protected void cancel(ActionEvent e) throws IOException {
+		Stage stage;
+		Parent r;
+		stage = (Stage) root.getScene().getWindow();
+		Login log = new Login();
+		if(log.isStudent(log.getUser()) == 1) {
+			r = FXMLLoader.load(getClass().getResource("classes.fxml"));
+		}
+		else {
+			r = FXMLLoader.load(getClass().getResource("profClass.fxml"));
+		}
+		Scene scene = new Scene(r);
+		stage.setScene(scene);
+		stage.show();
+	}
 	@FXML protected void handleCreateAssign(ActionEvent e) throws IOException{
 		String result = (String) choice.getValue();
 		if(result == "Quiz") {
@@ -60,7 +75,6 @@ public class newAssignmentController implements Initializable{
 			a.show();
 		}
 		else {
-			System.out.println(result);
 			Login log = new Login();
 			log.newAssignment(result, assignName.getText(), Integer.valueOf(possible.getText()), Integer.valueOf(classCode.getText()), log.getUser());
 			log.update();

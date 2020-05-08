@@ -13,9 +13,10 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Text>
-      <TextField fx:id="possible" layoutX="151.0" layoutY="160.0" prefHeight="25.0" prefWidth="150.0" promptText="Possible Points" />
-      <Button fx:id="create" layoutX="243.0" layoutY="304.0" mnemonicParsing="false" text="Create Assignment" onAction="#handleCreateAssign"/>
+      <TextField fx:id="possible" layoutX="151.0" layoutY="160.0" prefHeight="25.0" prefWidth="150.0" promptText="Possible Points" />  
       <TextField fx:id="classCode" layoutX="150.0" layoutY="210.0" prefHeight="25.0" prefWidth="150.0" promptText="Class Code" />
       <ChoiceBox fx:id="choice" layoutX="150.0" layoutY="260.0" prefWidth="150.0" />
+      <Button fx:id="create" layoutX="243.0" layoutY="304.0" mnemonicParsing="false" text="Create Assignment" onAction="#handleCreateAssign"/>
+      <Button layoutX="44.0" layoutY="347.0" mnemonicParsing="false" onAction="#cancel" text="Cancel" />
    </children>
 </Pane>

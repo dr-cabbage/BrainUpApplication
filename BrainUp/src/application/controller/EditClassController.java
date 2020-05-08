@@ -138,7 +138,7 @@ public class EditClassController implements Initializable{
 	@FXML protected void changeFinalWeight(ActionEvent e) throws IOException {
 		TextInputDialog dialog = new TextInputDialog();
 		dialog.setTitle("Change Final Weight");
-		dialog.setHeaderText("Change the final weight, current weight is : "  + lab.getText());
+		dialog.setHeaderText("Change the final weight, current weight is : "  + finalE.getText());
 		dialog.setContentText("New Weight: ");
 		Optional<String> result = dialog.showAndWait();
 		Login log = new Login();
@@ -160,7 +160,7 @@ public class EditClassController implements Initializable{
 	@FXML protected void changeExamWeight(ActionEvent e) throws IOException {
 		TextInputDialog dialog = new TextInputDialog();
 		dialog.setTitle("Change Exam Weight");
-		dialog.setHeaderText("Change the exam weight, current weight is : "  + lab.getText());
+		dialog.setHeaderText("Change the exam weight, current weight is : "  + exam.getText());
 		dialog.setContentText("New Weight: ");
 		Optional<String> result = dialog.showAndWait();
 		Login log = new Login();
@@ -182,7 +182,7 @@ public class EditClassController implements Initializable{
 	@FXML protected void changeHWWeight(ActionEvent e) throws IOException {
 		TextInputDialog dialog = new TextInputDialog();
 		dialog.setTitle("Change Homework Weight");
-		dialog.setHeaderText("Change the homework weight, current weight is : "  + lab.getText());
+		dialog.setHeaderText("Change the homework weight, current weight is : "  + hw.getText());
 		dialog.setContentText("New Weight: ");
 		Optional<String> result = dialog.showAndWait();
 		Login log = new Login();
@@ -204,7 +204,7 @@ public class EditClassController implements Initializable{
 	@FXML protected void changeOtherWeight(ActionEvent e) throws IOException {
 		TextInputDialog dialog = new TextInputDialog();
 		dialog.setTitle("Change Other Weight");
-		dialog.setHeaderText("Change the other weight, current weight is : "  + lab.getText());
+		dialog.setHeaderText("Change the other weight, current weight is : "  + other.getText());
 		dialog.setContentText("New Weight: ");
 		Optional<String> result = dialog.showAndWait();
 		Login log = new Login();

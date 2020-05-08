@@ -71,7 +71,7 @@ public class ClassController implements Initializable {
 			for(int i = 0; i < str.size(); i++) {
 				observe.add(str.get(i));
 			}
-			log.saveUser(log.getUser(), str.get(0).substring(str.get(0).lastIndexOf(" ") + 1), "Doesnt matter");
+			log.saveUser(log.getUser(), str.get(0).substring(str.get(0).lastIndexOf(" ") + 1), log.findFull(log.getUser()));
 		}
 		list.getItems().addAll(observe);
 	}

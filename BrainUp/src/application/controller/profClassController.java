@@ -65,7 +65,7 @@ public class profClassController implements Initializable{
 			for(int i = 0; i < str.size(); i++) {
 				observe.add(str.get(i));
 			}
-			log.saveUser(log.getUser(), str.get(0).substring(str.get(0).lastIndexOf(" ") + 1), "Doesnt matter");
+			log.saveUser(log.getUser(), str.get(0).substring(str.get(0).lastIndexOf(" ") + 1), log.findFull(log.getUser()));
 		}
 		list1.getItems().addAll(observe);
 	}
@@ -92,7 +92,7 @@ public class profClassController implements Initializable{
 				}
 			}
 		}
-		log.saveUser(log.getUser(), cl.substring(cl.lastIndexOf(" ") +1), "Doesnt matter");
+		log.saveUser(log.getUser(), cl.substring(cl.lastIndexOf(" ") +1), log.findFull(log.getUser()));
 		list2.getItems().addAll(observe);
 	}
 	@FXML protected void handleFindAssign(ActionEvent e) throws IOException {

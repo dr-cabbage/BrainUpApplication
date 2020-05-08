@@ -142,6 +142,31 @@ public class Login {
 		}
 		return false;
 	}
+	public String findFull(String usr) throws IOException {
+		File f1 = new File("data/usrpass.csv");
+		BufferedReader br = null;
+		String line = "";
+		String csvSplit = ",";
+		try {
+			br = new BufferedReader(new FileReader(f1));
+			while ((line = br.readLine()) != null) {
+				String[] str = line.split(csvSplit);
+				if(str[1].equals(usr)) {
+					return str[0];
+				}
+			}
+		}finally {
+			if(br != null) {
+				try {
+					br.close();
+				}
+				catch (IOException e){
+					e.printStackTrace();
+				}
+			}
+		}
+		return "";
+	}
 	//this makes sure a username does not already exist, use this if you want to change the username
 	public boolean alreadyExists(String user) throws IOException{
 		File f1 = new File("data/usrpass.csv");
