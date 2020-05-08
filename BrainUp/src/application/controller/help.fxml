@@ -1,26 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<Pane fx:id="root" fx:controller="application.controller.homeController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<Pane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.homeController">
    <children>
       <MenuBar layoutY="2.0">
         <menus>
           <Menu mnemonicParsing="false" text="Home">
             <items>
-                  <MenuItem fx:id="home" mnemonicParsing="false" text="Home" onAction="#handleHome"/>
-                  <MenuItem fx:id="classes" mnemonicParsing="false" text="Classes" onAction="#handleClasses" />
-                  <MenuItem fx:id="signO" mnemonicParsing="false" text="Sign Out" onAction="#handleSignOut"/>
+                  <MenuItem fx:id="home" mnemonicParsing="false" onAction="#handleHome" text="Home" />
+                  <MenuItem fx:id="classes" mnemonicParsing="false" onAction="#handleClasses" text="Classes" />
+                  <MenuItem fx:id="profile" mnemonicParsing="false" onAction="#handleProfile" text="Profile" />
+                  <MenuItem fx:id="signO" mnemonicParsing="false" onAction="#handleSignOut" text="Sign Out" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
                <items>
-                  <MenuItem fx:id="about" mnemonicParsing="false" text="About Us" onAction="#handleAbout"/>
-                  <MenuItem fx:id="help" mnemonicParsing="false" text="Help" onAction="#handleHelp"/>
+                  <MenuItem fx:id="about" mnemonicParsing="false" onAction="#handleAbout" text="About Us" />
+                  <MenuItem fx:id="help" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
                </items>
           </Menu>
         </menus>
@@ -30,6 +33,11 @@
             <Font name="Verdana" size="45.0" />
          </font>
       </Text>
-      <Text layoutX="91.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="I'll forget to fill this in later" textAlignment="CENTER" wrappingWidth="418.001953125" />
+      <Text layoutX="161.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Need help? You've come to the right place" textAlignment="CENTER" wrappingWidth="278.1367187499999" />
+      <TextArea editable="false" layoutX="18.0" layoutY="120.0" prefHeight="266.0" prefWidth="565.0" text="How To Sign Up For Classes! (For Students)&#10;-Signing up for your classes is easy. All you have to do is put in the class code that was given to your professor into the text bar next to add a class and press add a class!&#10;&#10;How To Add a Fake Grade! (For Students)&#10;-If you would like to see what your grade could be on upcoming assignments, tests, labs, etc no worries. All you have to do is click on the desired assignment and click on the grade and input whatever grade you want to get and see how your class average changes as a result of that grade!&#10;&#10;How To Check Your Progress In Your Class! (For Students)&#10;-Knowing how one is doing in their class is something that all students want. Well on BrainUp we made it so easy for you to check how youve done on each assignment. There is a graph implemented into BrainUp that allows you to view this. All you have to do is click on the graph button next to Help and it is easy as that!&#10;&#10;How to Find An Assignment! (For Professors)&#10;-To find an assignment all you have to do is type in the assignment name into the text box next to the find assignment button and press the find assignment button!&#10;&#10;Editing In Your Class (For Professors)&#10;-To edit your class ie. adding assignments, grading assignments, and creating a new class, all you have to do is click on the edit button next to home and choose whatever option you want from the drop down menu!&#10;&#10;Navigating Your Class (For Professors)&#10;-Navigating your classes was never easier!. All you have to do is click on your desired course and from there you have the option of going through your students in that class and seeing all their assignments and grades!&#10;&#10;For any other questions you have regarding BrainUp feel free to contact zqa635@my.utsa.edu&#10;Phone number coming soon!&#10;&#10;&#10;" wrapText="true">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </TextArea>
    </children>
 </Pane>

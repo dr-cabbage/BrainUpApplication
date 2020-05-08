@@ -1,26 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<Pane fx:id="root" fx:controller="application.controller.homeController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<Pane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.homeController">
    <children>
       <MenuBar layoutY="2.0">
         <menus>
           <Menu mnemonicParsing="false" text="Home">
             <items>
-                  <MenuItem fx:id="home" mnemonicParsing="false" text="Home" onAction="#handleHome"/>
-                  <MenuItem fx:id="classes" mnemonicParsing="false" text="Classes" />
-                  <MenuItem fx:id="signO" mnemonicParsing="false" text="Sign Out" onAction="#handleSignOut"/>
+                  <MenuItem fx:id="home" mnemonicParsing="false" onAction="#handleHome" text="Home" />
+                  <MenuItem fx:id="classes" mnemonicParsing="false" onAction="#handleClasses" text="Classes" />
+                  <MenuItem fx:id="profile" mnemonicParsing="false" onAction="#handleProfile" text="Profile" />
+                  <MenuItem fx:id="signO" mnemonicParsing="false" onAction="#handleSignOut" text="Sign Out" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
                <items>
-                  <MenuItem fx:id="about" mnemonicParsing="false" text="About Us" onAction="#handleAbout"/>
-                  <MenuItem fx:id="help" mnemonicParsing="false" text="Help" onAction="#handleHelp"/>
+                  <MenuItem fx:id="about" mnemonicParsing="false" onAction="#handleAbout" text="About Us" />
+                  <MenuItem fx:id="help" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
                </items>
           </Menu>
         </menus>
@@ -30,6 +34,11 @@
             <Font name="Verdana" size="45.0" />
          </font>
       </Text>
-      <Text layoutX="91.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Well, we are a bunch of college students that aren't too fond of blackboard as you can see." textAlignment="CENTER" wrappingWidth="418.001953125" />
+      <Text layoutX="91.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="We are a group of students who decided to make a more user friendly version of blackboard for both students and professors! We were founded in Spring 2020 by a group of 5 students who met in their Applications Porgramming Class! We decided to make this app becuase sometimes using and navigating blackboard can be a hassle and that should be the least of your worries when in school. So with this app you can navigate your classes easily, add classes easily, and more! " textAlignment="CENTER" wrappingWidth="418.001953125" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="239.0" layoutY="233.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:data/brain.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>
