@@ -1,6 +1,20 @@
 package application.model;
 import java.util.ArrayList;
 
+/**
+ * Holds classes and respective students
+ * 
+ * @author GroupUs
+ * @author Kale King
+ * @author Ian Solis
+ * @author Jose Morales
+ * @author Seyma Oz
+ * @author Claudio Ordaz
+ * 
+ * UTSA CS 3443 - Group Project
+ * Spring 2020
+ */
+
 public class Classes {
 	String name;
 	ArrayList<Students> stu;
@@ -10,6 +24,14 @@ public class Classes {
 	ArrayList<Assignments> assignments = new ArrayList<Assignments>();
 	Syllabus syllabus;
 	
+	/**
+	 * classes constructor
+	 * 
+	 * @param n : String
+	 * @param p : String
+	 * @param s : Int
+	 * @param cl : Int
+	 */
 	public Classes(String n, String p, int s, int cl) {
 		this.name = n;
 		this.prof = p;
@@ -17,6 +39,14 @@ public class Classes {
 		this.classCode = cl;
 		this.stu = new ArrayList<Students>();
 	}
+	
+	/**
+	 * grades a specific assignment for specific student
+	 * 
+	 * @param studentID : String
+	 * @param assignmentName : String
+	 * @param grade : Int
+	 */
 	public void gradeAssignment(String studentID, String assignmentName, int grade) {
 		int i = getStudent(studentID);
 		int j = getAssignment(assignmentName);
@@ -26,6 +56,12 @@ public class Classes {
 		stu.get(i).assignments.get(j).graded = true;
 		stu.get(i).assignments.get(j).grade = grade;
 	}
+	
+	/**
+	 * formats class information for csv files
+	 * 
+	 * @return : String
+	 */
 	public String toCsv() {
 		String str = name + "," + Integer.toString(classCode) + "," + prof + "," + Integer.toString(stu.size());
 		for(int i = 0; i < stu.size(); i++) {
@@ -34,6 +70,13 @@ public class Classes {
 		str += "\n";
 		return str;
 	}
+	
+	/**
+	 * returns index of a student
+	 * 
+	 * @param usr : String
+	 * @return : Int
+	 */
 	public int getStudent(String usr) {
 		for(int i = 0; i < stu.size(); i++) {
 			if(stu.get(i).username.equals(usr)) {
@@ -42,6 +85,13 @@ public class Classes {
 		}
 		return -1;
 	}
+	
+	/**
+	 * returns index of an assignment
+	 * 
+	 * @param assignmentName : String
+	 * @return : Int
+	 */
 	public int getAssignment(String assignmentName) {
 		for(int i = 0; i < assignments.size(); i++) {
 			if(assignments.get(i).name.equals(assignmentName)) {
@@ -50,6 +100,13 @@ public class Classes {
 		}
 		return -1;
 	}
+	
+	/**
+	 * establishes information for graph for student
+	 * 
+	 * @param username : String
+	 * @return : ArrayList<String>
+	 */
 	public ArrayList<String> studentGraph(String username){
 		ArrayList<String> arr = new ArrayList<String>();
 		int i = getStudent(username);
@@ -146,6 +203,12 @@ public class Classes {
 		return arr;
 	}
 	
+	/**
+	 * returns students grades for class
+	 * 
+	 * @param username : String
+	 * @return : String
+	 */
 	public String getStuGrade(String username) {
 		int i = getStudent(username);
 		double finalGrade = 0, exams = 0, quizzes = 0, HW = 0, labs = 0, other = 0;
@@ -247,6 +310,12 @@ public class Classes {
 		double grade = exams + quizzes + HW + labs + other + finalGrade;
 		return Double.toString(grade);
 	}
+	
+	/**
+	 * returns list of students
+	 * 
+	 * @return : ArrayList<String>
+	 */
 	public ArrayList<String> listStudents(){
 		ArrayList<String> str = new ArrayList<String>();
 		for(int i = 0; i < stu.size(); i++) {
@@ -254,6 +323,15 @@ public class Classes {
 		}
 		return str;
 	}
+	
+	/**
+	 * assigns grade for assignment
+	 * 
+	 * @param assignName : String
+	 * @param usr : String
+	 * @param i : Int
+	 * @param gr : Int
+	 */
 	public void changeGrade(String assignName, String usr, int i, int gr) {
 		for(int j = 0; j < stu.get(i).assignments.size(); j++) {
 			if(stu.get(i).assignments.get(j).name.equals(assignName)) {
@@ -263,6 +341,15 @@ public class Classes {
 			}
 		}
 	}
+	
+	/**
+	 * changes the fake grade to real grade
+	 * 
+	 * @param assignName : String
+	 * @param usr : String
+	 * @param i : Int
+	 * @param gr : Int
+	 */
 	public void changeFakeGrade(String assignName, String usr, int i, int gr) {
 		for(int j = 0; j < stu.get(i).assignments.size(); j++) {
 			if(stu.get(i).assignments.get(j).name.equals(assignName)) {
@@ -271,6 +358,13 @@ public class Classes {
 			}
 		}
 	}
+	
+	/**
+	 * assigns avg grade for an assignment
+	 * 
+	 * @param assignName : String
+	 * @return : String
+	 */
 	public String assignAvgGrade(String assignName) {
 		double avg = 0.0;
 		double numStu = stu.size();
@@ -280,6 +374,12 @@ public class Classes {
 		}
 		return Double.toString(avg/numStu);
 	}
+	
+	/**
+	 * returns class average
+	 * 
+	 * @return : String
+	 */
 	public String classAvg() {
 		double avg = 0.0;
 		for(int i = 0; i < stu.size(); i++) {
@@ -288,11 +388,22 @@ public class Classes {
 		double j = stu.size();
 		return Double.toString(avg / j);
 	}
+	
+	/**
+	 * drops a student from class
+	 * 
+	 * @param username : String
+	 */
 	public void dropStudent(String username) {
 		int i = getStudent(username);
 		stu.remove(i);
 	}
 	
+	/**
+	 * shows weights for assignments
+	 * 
+	 * @return : String[]
+	 */
 	public String[] editClassPage() {
 		String[] str = new String[10];
 		str[0] = this.name;

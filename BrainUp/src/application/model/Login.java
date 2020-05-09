@@ -2,15 +2,40 @@ package application.model;
 import java.io.*;
 import java.util.ArrayList;
 
+/**
+ * Heart of BrainUp
+ * 
+ * @author GroupUs
+ * @author Kale King
+ * @author Ian Solis
+ * @author Jose Morales
+ * @author Seyma Oz
+ * @author Claudio Ordaz
+ * 
+ * UTSA CS 3443 - Group Project
+ * Spring 2020
+ */
+
 public class Login {
 	ArrayList<Classes> classes;
+	
+	/**
+	 * constructor for login
+	 * 
+	 * @throws IOException
+	 */
 	public Login() throws IOException {
 		this.classes = new ArrayList<Classes>();
 		importClasses();
 		update();
 	}
-	//makes sure all information is up to date any time you use any functions in login
-	//don't mess with this one if you want to keep your data cause its a jerk
+	
+	/**
+	 * makes sure all information is up to date any time you use any functions in login
+	 * don't mess with this one if you want to keep your data 
+	 * 
+	 * @throws IOException
+	 */
 	public void importClasses() throws IOException{
 		File f1 = new File("data/classes.csv");
 		BufferedReader br = null;
@@ -116,7 +141,14 @@ public class Login {
 		}
 	}
 	
-	//This function checks username and password to login
+	/**
+	 * This function checks username and password to login
+	 * 
+	 * @param user : String
+	 * @param pass : String
+	 * @return
+	 * @throws IOException
+	 */
 	public boolean userPassCheck(String user, String pass) throws IOException{
 		File f1 = new File("data/usrpass.csv");
 		BufferedReader br = null;
@@ -142,6 +174,14 @@ public class Login {
 		}
 		return false;
 	}
+	
+	/**
+	 * returns the full name of the user
+	 * 
+	 * @param usr : String
+	 * @return
+	 * @throws IOException
+	 */
 	public String findFull(String usr) throws IOException {
 		File f1 = new File("data/usrpass.csv");
 		BufferedReader br = null;
@@ -167,7 +207,14 @@ public class Login {
 		}
 		return "";
 	}
-	//this makes sure a username does not already exist, use this if you want to change the username
+	
+	/**
+	 * this makes sure a username does not already exist, use this if you want to change the username
+	 * 
+	 * @param user : String
+	 * @return
+	 * @throws IOException
+	 */
 	public boolean alreadyExists(String user) throws IOException{
 		File f1 = new File("data/usrpass.csv");
 		BufferedReader br = null;
@@ -193,7 +240,14 @@ public class Login {
 		}
 		return false;
 	}
-	//checks if student is already in class before adding them
+	
+	/**
+	 * checks if student is already in class before adding them
+	 * 
+	 * @param cl : Int
+	 * @param u : String
+	 * @return
+	 */
 	public boolean stuInClass(int cl, String u) {
 		int k = findClass(cl);
 		for(int i = 0; i < classes.get(k).stu.size(); i++) {
@@ -203,7 +257,13 @@ public class Login {
 		}
 		return false;
 	}
-	//finds a specific class... intended to be used once per function and saved to a variable
+	
+	/**
+	 * finds a specific class... intended to be used once per function and saved to a variable
+	 * 
+	 * @param cl : Int
+	 * @return
+	 */
 	public int findClass(int cl) {
 		for(int i =0; i < this.classes.size(); i++) {
 			if(classes.get(i).classCode == cl) {
@@ -212,7 +272,14 @@ public class Login {
 		}
 		return -1;
 	}
-	//finds student in class so you can call this once and set it equal to a variable 
+	
+	/**
+	 * finds student in class so you can call this once and set it equal to a variable 
+	 * 
+	 * @param i : Int
+	 * @param usr : String
+	 * @return
+	 */
 	public int findStu(int i, String usr) {
 		for(int j = 0; j < this.classes.get(i).stu.size(); j++) {
 			if(classes.get(i).stu.get(j).username.equals(usr)) {
@@ -221,14 +288,33 @@ public class Login {
 		}
 		return -1;
 	}
-	//adds a student to a class and gives them all assignments
+	
+	/**
+	 * adds a student to a class and gives them all assignments
+	 * 
+	 * @param name : String
+	 * @param username : String
+	 * @param i : Int
+	 * @param cl : Int
+	 * @throws IOException
+	 */
 	public void addStudent(String name, String username, int i, int cl) throws IOException {
 		classes.get(i).stu.add(new Students(name, username, cl));
 		for(int j = 0; j < classes.get(i).assignments.size();j++){
 			classes.get(i).stu.get(findStu(i, username)).assignments.add(new Assignments(classes.get(i).assignments.get(j).type, classes.get(i).assignments.get(j).name, classes.get(i).assignments.get(j).possible, cl, username, classes.get(i).assignments.get(j).grade, classes.get(i).assignments.get(j).graded, classes.get(i).assignments.get(j).fakeGrade));
 		}
 	}
-	//for new assignments being created by professors... distributes assignment to all students
+	
+	/**
+	 * for new assignments being created by professors... distributes assignment to all students
+	 * 
+	 * @param type : String
+	 * @param name : String
+	 * @param possible : Int
+	 * @param classcode : Int
+	 * @param username : String
+	 * @throws IOException
+	 */
 	public void newAssignment(String type, String name, int possible, int classcode, String username) throws IOException {
 		int k = findClass(classcode);
 		//think of the classes array of assignments as the professors copy of the assignments
@@ -239,16 +325,45 @@ public class Login {
 		}
 		update();
 	}
-	//gets a specific students grade for a class
+	
+	/**
+	 * gets a specific students grade for a class
+	 * 
+	 * @param cl : Int
+	 * @param user : String
+	 * @return
+	 */
 	public String getGrade(int cl, String user) {
 		int i = findClass(cl);
 		return classes.get(i).getStuGrade(user);
 	}
-	//for adding assignments from csv files
+	
+	/**
+	 * for adding assignments from csv files
+	 * 
+	 * @param type : String
+	 * @param name : String
+	 * @param possible : Int
+	 * @param classcode : Int
+	 * @param username : String
+	 * @param grade : Int
+	 * @param graded : boolean
+	 * @param fake : Int
+	 * @param i : Int
+	 * @param j : Int
+	 * @throws IOException
+	 */
 	public void addAssignment(String type, String name, int possible, int classcode, String username, int grade, boolean graded, int fake, int i, int j) throws IOException {
 		classes.get(i).stu.get(j).assignments.add(new Assignments(type, name, possible, classcode, username, grade, graded, fake));
 	}
-	//checks if user is professor or student, 1 if student, 0 if professor, and -1 if they do not exist
+	
+	/**
+	 * checks if user is professor or student, 1 if student, 0 if professor, and -1 if they do not exist
+	 * 
+	 * @param username : String
+	 * @return : Int
+	 * @throws IOException
+	 */
 	public int isStudent(String username) throws IOException {
 		File f1 = new File("data/usrpass.csv");
 		BufferedReader br = null;
@@ -277,7 +392,13 @@ public class Login {
 		}
 		return -1;
 	}
-	//returns "name username" of all students in a class in an ArrayList
+	
+	/**
+	 * returns "name username" of all students in a class in an ArrayList
+	 * 
+	 * @param cl : Int
+	 * @return : ArrayList<String>
+	 */
 	public ArrayList<String> getStudents(int cl){
 		ArrayList<String> str = new ArrayList<String>();
 		int k = findClass(cl);
@@ -286,7 +407,16 @@ public class Login {
 		}
 		return str;
 	}
-	//adds a user when they sign up
+	
+	/**
+	 * adds a user when they sign up
+	 * 
+	 * @param full : String
+	 * @param u : String
+	 * @param p : String
+	 * @param stu : boolean
+	 * @throws IOException
+	 */
 	public void addUser(String full, String u, String p, boolean stu) throws IOException{
 		FileWriter pw = new FileWriter("data/usrpass.csv", true);
 		pw.append(full);
@@ -305,7 +435,15 @@ public class Login {
 		pw.flush();
 		pw.close();
 	}
-	//this returns the users grades... it'll be useful for separating the assignment from the grade in order to edit it
+	
+	/**
+	 * this returns the users grades... it'll be useful for separating the assignment from the grade in order to edit it
+	 * 
+	 * @param cl : Int
+	 * @param user : String
+	 * @return : ArrayList<String>
+	 * @throws IOException
+	 */
 	public ArrayList<String> getUserGrades(int cl, String user) throws IOException{
 		ArrayList<String> str = new ArrayList<String>();
 		int i = findClass(cl);
@@ -320,6 +458,16 @@ public class Login {
 		}
 		return str;
 	}
+	
+	/**
+	 * returns arraylist of grades of certain type
+	 * 
+	 * @param cl : Int
+	 * @param user : String
+	 * @param assignmentType : String
+	 * @return : ArrayList<String>
+	 * @throws IOException
+	 */
 	public ArrayList<String> getUserGradeType(int cl, String user, String assignmentType) throws IOException {
 		ArrayList<String> str = new ArrayList<String>();
 		for(int i = 0; i < classes.size(); i++) {
@@ -336,7 +484,14 @@ public class Login {
 		}
 		return str;
 	}
-	//checks if the assignment exists
+	
+	/**
+	 * checks if the assignment exists
+	 * 
+	 * @param cl : Int
+	 * @param assignName : String
+	 * @return : boolean
+	 */
 	public boolean assignmentExists(int cl, String assignName) {
 		int i = findClass(cl);
 		for(int j = 0; j < classes.get(i).assignments.size(); j++) {
@@ -346,7 +501,15 @@ public class Login {
 		}
 		return false;
 	}
-	//gets the grade of a singular assignment
+	
+	/**
+	 * gets the grade of a singular assignment
+	 * 
+	 * @param cl : Int
+	 * @param usr : String
+	 * @param assignName : String
+	 * @return : String
+	 */
 	public String getAssignGrade(int cl, String usr, String assignName) {
 		int i = findClass(cl);
 		int j = findStu(i, usr);
@@ -357,7 +520,15 @@ public class Login {
 		}
 		return "";
 	}
-	//this returns all assignments for a specific user... for students it is automatically the user signed in.
+	
+	/**
+	 * this returns all assignments for a specific user... for students it is automatically the user signed in.
+	 * 
+	 * @param cl : Int
+	 * @param user : String
+	 * @return : ArrayList<String>
+	 * @throws IOException
+	 */
 	public ArrayList<String> getUserAssignments(int cl, String user) throws IOException {
 		ArrayList<String> str = new ArrayList<String>();
 		for(int i = 0; i < classes.size(); i++) {
@@ -373,7 +544,13 @@ public class Login {
 		}
 		return str;
 	}
-	// this returns the name and class code of all classes a specific student is in... also checks if user is a professor
+	
+	/**
+	 * this returns the name and class code of all classes a specific student is in... also checks if user is a professor
+	 * 
+	 * @return : ArrayList<String>
+	 * @throws IOException
+	 */
 	public ArrayList<String> getUserClasses() throws IOException {
 		String user = getUser();
 		ArrayList<String> str = new ArrayList<String>();
@@ -417,7 +594,12 @@ public class Login {
 		return str;
 		
 	}
-	// this is really important as it will keep everything up to date as it is used
+	
+	/**
+	 * this is really important as it will keep everything up to date as it is used
+	 * 
+	 * @throws IOException
+	 */
 	public void update() throws IOException{
 		FileWriter pw = new FileWriter("data/students.csv", true);
 		FileWriter pw1 = new FileWriter("data/classes.csv", true);
@@ -462,11 +644,27 @@ public class Login {
 		pw6.close();
 		pw7.close();
 	}
-	//adds a class when the professor makes one
+	
+	/**
+	 * adds a class when the professor makes one
+	 * 
+	 * @param name : String
+	 * @param prof : String
+	 * @param cl : Int
+	 * @throws IOException
+	 */
 	public void addClass(String name, String prof, int cl) throws IOException {
 		classes.add(new Classes(name, prof, 0, cl));
 	}
-	//this saves the current user when they log in so we can access the getUser() function whenever we want
+	
+	/**
+	 * this saves the current user when they log in so we can access the getUser() function whenever we want
+	 * 
+	 * @param user : String
+	 * @param classCode : String
+	 * @param full : String
+	 * @throws IOException
+	 */
 	public void saveUser(String user, String classCode, String full) throws IOException {
 		FileWriter pw = new FileWriter("data/currUser.csv");
 		pw.append(user);
@@ -477,7 +675,14 @@ public class Login {
 		pw.flush();
 		pw.close();
 	}
-	//gets first name, this will be used in the profile part of our project
+	
+	/**
+	 * gets first name, this will be used in the profile part of our project
+	 * 
+	 * @param username : String
+	 * @return : String
+	 * @throws IOException
+	 */
 	public String getName(String username) throws IOException{
 		File f1 = new File("data/usrpass.csv");
 		BufferedReader br = null;
@@ -502,7 +707,13 @@ public class Login {
 		}
 		return "";
 	}
-	//adds student to class when student is already in one class 
+	
+	/**
+	 * adds student to class when student is already in one class
+	 *  
+	 * @param cl : String
+	 * @throws IOException
+	 */
 	public void addToClass(String cl) throws IOException{
 		File f1 = new File("data/currUser.csv");
 		int k = findClass(Integer.valueOf(cl));
@@ -526,7 +737,13 @@ public class Login {
 		}
 		update();
 	}
-	//returns the current user
+	
+	/**
+	 * returns the current user
+	 * 
+	 * @return : String
+	 * @throws IOException
+	 */
 	public String getUser() throws IOException {
 		File f1 = new File("data/currUser.csv");
 		BufferedReader br = null;
@@ -549,38 +766,95 @@ public class Login {
 		}
 		return "";
 	}
-	//works when creating and editing the syllabus
+	
+	/**
+	 * works when creating and editing the syllabus
+	 * 
+	 * @param cl : Int
+	 * @param finalW : Double
+	 * @param examW : Double
+	 * @param quizW : Double
+	 * @param HWW : Double
+	 * @param labW : Double
+	 * @param otherW : Double
+	 * @throws IOException
+	 */
 	public void editSyllabus(int cl, double finalW, double examW, double quizW, double HWW, double labW, double otherW) throws IOException {
 		classes.get(findClass(cl)).syllabus = new Syllabus(cl, finalW, examW, quizW, HWW, labW, otherW);
 	}
-	//changes the grade of one assignment
+	
+	/**
+	 * changes the grade of one assignment
+	 * 
+	 * @param cl : Int
+	 * @param usr : String
+	 * @param assignName : String
+	 * @param grade : Int
+	 * @throws IOException
+	 */
 	public void changeGrade(int cl, String usr, String assignName, int grade) throws IOException {
 		int i = findClass(cl);
 		int j = findStu(i, usr);
 		classes.get(i).changeGrade(assignName, usr, j, grade);
 		update();
 	}
+	
+	/**
+	 * initializes a single grade
+	 * 
+	 * @param cl : Int
+	 * @param usr : String
+	 * @param assignName : String
+	 * @param grade : Int
+	 * @throws IOException
+	 */
 	public void changeFakeGrade(int cl, String usr, String assignName, int grade) throws IOException {
 		int i = findClass(cl);
 		int j = findStu(i, usr);
 		classes.get(i).changeFakeGrade(assignName, usr, j, grade);
 		update();
 	}
-	//returns the average for a single assignment in the whole class
+	
+	/**
+	 * returns the average for a single assignment in the whole class
+	 * 
+	 * @param cl : Int
+	 * @param assignName : String
+	 * @return : String
+	 */
 	public String assignAvgGrade(int cl, String assignName) {
 		return classes.get(findClass(cl)).assignAvgGrade(assignName);
 	}
-	//returns the whole class average
+	
+	/**
+	 * returns the whole class average
+	 * 
+	 * @param cl : Int
+	 * @return : String
+	 */
 	public String classAvg(int cl) {
 		return classes.get(findClass(cl)).classAvg();
 	}
-	//drops student from course
+	
+	/**
+	 * drops student from course
+	 * 
+	 * @param cl : Int
+	 * @param usr : String
+	 * @throws IOException
+	 */
 	public void dropStudent(int cl, String usr) throws IOException {
 		int i = findClass(cl);
 		classes.get(i).dropStudent(usr);
 		update();
 	}
 	
+	/**
+	 * edits current class
+	 * 
+	 * @return : String[]
+	 * @throws IOException
+	 */
 	public String[] editClass() throws IOException {
 		String str = currClass();
 		int i = findClass(Integer.valueOf(str));
@@ -591,6 +865,12 @@ public class Login {
 		return classes.get(i).editClassPage();
 	}
 	
+	/**
+	 * returns current class
+	 * 
+	 * @return : String
+	 * @throws IOException
+	 */
 	public String currClass() throws IOException{
 		File f1 = new File("data/currUser.csv");
 		BufferedReader br = null;
@@ -614,12 +894,28 @@ public class Login {
 		return "";
 	}
 	
+	/**
+	 * changes name of a certain class
+	 * 
+	 * @param cl : Int
+	 * @param newName : String
+	 * @throws IOException
+	 */
 	public void changeClassName(int cl, String newName) throws IOException {
 		int i = findClass(cl);
 		classes.get(i).name = newName;
 		update();
 		return;
 	}
+	
+	/**
+	 * changes weight of assignment type for class
+	 * 
+	 * @param cl : Int
+	 * @param newWeight : Int
+	 * @param type : String
+	 * @throws IOException
+	 */
 	public void changeWeight(int cl, int newWeight, String type) throws IOException {
 		int i = findClass(cl);
 		if(type.equals("Q")) {
@@ -642,6 +938,12 @@ public class Login {
 		}
 		update();
 	}
+	
+	/**
+	 * assigns all fake grades and updates
+	 * 
+	 * @throws IOException
+	 */
 	public void signOut() throws IOException {
 		for(int i = 0; i < classes.size(); i++) {
 			for(int j = 0; j < classes.get(i).stu.size(); j++) {
@@ -653,11 +955,27 @@ public class Login {
 		update();
 	}
 
+	/**
+	 * returns graph information for a student
+	 * 
+	 * @param cl : Int
+	 * @param usr : String
+	 * @return
+	 */
 	public ArrayList<String> studentGraph(int cl, String usr){
 		int i = findClass(cl);
 		return classes.get(i).studentGraph(usr);
 	}
 	
+	/**
+	 * changes all instances of a users information to the new info. and updates the csv's
+	 * 
+	 * @param ogUser : String
+	 * @param name : String
+	 * @param userN : String
+	 * @param password : String
+	 * @throws IOException
+	 */
 	public void editInfo(String ogUser, String name, String userN, String password) throws IOException {
 		int i, size, size1;
 		File f1 = new File("data/usrpass.csv");
@@ -754,6 +1072,12 @@ public class Login {
 	
 	}
 	
+	/**
+	 * returns the information from usrpass.csv for current user
+	 * 
+	 * @return : String[]
+	 * @throws IOException
+	 */
 	public String[] getInfo() throws IOException {
 		String userN = getUser();
 		String[] str = null;
@@ -783,4 +1107,3 @@ public class Login {
 
 }
 	
-
